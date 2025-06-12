@@ -1,51 +1,222 @@
 <template>
   <section id="skills" class="relative min-h-screen overflow-hidden">
-    <!-- Aurora Gradient Background -->
-    <div class="aurora-bg absolute inset-0 z-0 pointer-events-none"></div>
-    <!-- Noise Overlay -->
-    <div class="noise-overlay absolute inset-0 z-10 pointer-events-none"></div>
-    <!-- Particles -->
-    <div class="particles absolute inset-0 z-20 pointer-events-none">
-      <canvas ref="particlesCanvas" class="w-full h-full"></canvas>
+    <!-- Simplified Background -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-slate-900 via-gray-900 to-black"
+    ></div>
+
+    <!-- Optimized Neural Network Background -->
+    <div class="absolute inset-0 opacity-15">
+      <svg
+        class="w-full h-full"
+        viewBox="0 0 1920 1080"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <pattern
+            id="neuralGrid"
+            x="0"
+            y="0"
+            width="100"
+            height="100"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="50" cy="50" r="0.5" fill="#00fff0" opacity="0.4" />
+            <line
+              x1="0"
+              y1="50"
+              x2="100"
+              y2="50"
+              stroke="#00fff0"
+              stroke-width="0.3"
+              opacity="0.2"
+            />
+            <line
+              x1="50"
+              y1="0"
+              x2="50"
+              y2="100"
+              stroke="#7f5cff"
+              stroke-width="0.3"
+              opacity="0.2"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#neuralGrid)" />
+      </svg>
     </div>
+
+    <!-- Simplified Data Streams -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        v-for="i in 8"
+        :key="`data-stream-${i}`"
+        class="absolute w-px bg-gradient-to-b from-transparent via-cyan-400/30 to-transparent animate-data-stream"
+        :style="getDataStreamStyle(i)"
+      />
+    </div>
+
+    <!-- Simplified Interface Frame -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Corner brackets -->
+      <div
+        class="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-cyan-400/50"
+      ></div>
+      <div
+        class="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-cyan-400/50"
+      ></div>
+      <div
+        class="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-emerald-400/50"
+      ></div>
+      <div
+        class="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-emerald-400/50"
+      ></div>
+
+      <!-- Simplified side panels -->
+      <div class="absolute top-1/4 left-4 w-6 space-y-3">
+        <div
+          v-for="i in 6"
+          :key="`left-data-${i}`"
+          class="h-0.5 bg-gradient-to-r from-cyan-400/40 to-transparent animate-pulse"
+          :style="{ width: '60%', animationDelay: `${i * 0.3}s` }"
+        />
+      </div>
+      <div class="absolute top-1/4 right-4 w-6 space-y-3">
+        <div
+          v-for="i in 6"
+          :key="`right-data-${i}`"
+          class="h-0.5 bg-gradient-to-l from-emerald-400/40 to-transparent animate-pulse"
+          :style="{ width: '60%', animationDelay: `${i * 0.3}s` }"
+        />
+      </div>
+    </div>
+
     <!-- Main Content -->
     <div
-      :class="['relative z-30 pt-8 fade-in-section', { visible }]"
+      :class="['relative z-30 py-8 fade-in-section', { visible }]"
       id="skills-content"
     >
-      <div class="text-center mb-10">
+      <!-- Simplified Header -->
+      <div class="text-center mb-8 relative">
+        <!-- System Status -->
+        <div
+          class="inline-flex items-center gap-3 mb-3 px-6 py-3 bg-black/30 border border-cyan-400/30 rounded-full backdrop-blur-sm"
+        >
+          <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+          <span class="text-emerald-300 font-mono text-sm tracking-wider"
+            >NEURAL_MATRIX_ONLINE</span
+          >
+        </div>
+
         <h2
-          class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent"
+          class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-purple-300 to-emerald-300 bg-clip-text text-transparent font-mono"
         >
           &gt; SKILL_CONSTELLATION.EXE
         </h2>
-        <p class="text-md text-cyan-200 max-w-2xl mx-auto">
-          Technical mastery mapped across development domains. Each node
-          represents earned expertise...
-        </p>
+
+        <div class="relative max-w-3xl mx-auto">
+          <p class="text-lg text-cyan-200 leading-relaxed mb-2">
+            Neural pathways mapped across quantum development domains. Each node
+            represents
+            <span class="text-emerald-300 font-semibold"
+              >crystallized expertise</span
+            >
+            interfacing with the digital cosmos.
+          </p>
+        </div>
       </div>
+
+      <!-- Optimized Constellation Container -->
       <div
         ref="constellationRef"
-        class="relative w-full max-w-5xl h-[700px] mx-auto rounded-3xl border border-cyan-400/10 bg-black/30 z-40 overflow-hidden"
+        class="relative w-full max-w-6xl h-[600px] mx-auto rounded-3xl border-2 border-cyan-400/20 bg-gradient-to-br from-black/50 via-slate-900/30 to-black/50 backdrop-blur-md shadow-2xl overflow-hidden constellation-container"
       >
-        <!-- SVG Star Constellation -->
+        <!-- Simplified inner interface -->
+        <div
+          class="absolute inset-4 border border-slate-600/20 rounded-2xl bg-gradient-to-br from-slate-800/10 to-black/20"
+        >
+          <div
+            class="absolute top-2 left-2 w-4 h-4 border-l border-t border-cyan-400/40"
+          ></div>
+          <div
+            class="absolute top-2 right-2 w-4 h-4 border-r border-t border-cyan-400/40"
+          ></div>
+          <div
+            class="absolute bottom-2 left-2 w-4 h-4 border-l border-b border-emerald-400/40"
+          ></div>
+          <div
+            class="absolute bottom-2 right-2 w-4 h-4 border-r border-b border-emerald-400/40"
+          ></div>
+        </div>
+
+        <!-- Reduced background particles -->
+        <div class="absolute inset-0">
+          <div
+            v-for="i in 20"
+            :key="`bg-particle-${i}`"
+            class="absolute w-1 h-1 rounded-full animate-pulse bg-cyan-400/20"
+            :style="getParticleStyle(i)"
+          />
+        </div>
+
+        <!-- Optimized SVG Constellation -->
         <svg
           class="absolute inset-0 w-full h-full"
-          viewBox="0 0 1200 700"
+          viewBox="0 0 1200 400"
           preserveAspectRatio="none"
-          style="z-index: 1"
+          style="z-index: 10"
         >
-          <!-- Background faint stars -->
-          <circle
-            v-for="(star, i) in backgroundStars"
-            :key="'bg-star-' + i"
-            :cx="star.x"
-            :cy="star.y"
-            :r="star.r"
-            fill="#b5f3ff"
-            :opacity="star.opacity"
-          />
-          <!-- Connection lines -->
+          <defs>
+            <!-- Enhanced gradients for more depth -->
+            <radialGradient id="nodeGlow" cx="0.5" cy="0.3" r="0.7">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+              <stop offset="30%" stop-color="#00fff0" stop-opacity="0.7" />
+              <stop offset="70%" stop-color="#7f5cff" stop-opacity="0.4" />
+              <stop offset="100%" stop-color="transparent" />
+            </radialGradient>
+
+            <linearGradient id="connectionLine" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00fff0" stop-opacity="0.8" />
+              <stop offset="50%" stop-color="#7f5cff" stop-opacity="1" />
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.8" />
+            </linearGradient>
+
+            <!-- Enhanced glow filter with multiple layers -->
+            <filter
+              id="enhancedGlow"
+              x="-100%"
+              y="-100%"
+              width="300%"
+              height="300%"
+            >
+              <feGaussianBlur stdDeviation="3" result="coloredBlur1" />
+              <feGaussianBlur stdDeviation="8" result="coloredBlur2" />
+              <feGaussianBlur stdDeviation="15" result="coloredBlur3" />
+              <feMerge>
+                <feMergeNode in="coloredBlur3" />
+                <feMergeNode in="coloredBlur2" />
+                <feMergeNode in="coloredBlur1" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+
+            <!-- Subtle glow for connections -->
+            <filter
+              id="connectionGlow"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- Connection lines with dotted style -->
           <g>
             <line
               v-for="(conn, i) in visibleConnections"
@@ -54,127 +225,229 @@
               :y1="conn.y1"
               :x2="conn.x2"
               :y2="conn.y2"
-              stroke="url(#starLine)"
+              stroke="url(#connectionLine)"
               stroke-width="2.5"
-              :opacity="conn.opacity"
-              filter="url(#glow)"
+              stroke-dasharray="8,4"
+              :opacity="0.7"
+              filter="url(#connectionGlow)"
+              class="connection-line"
+              :style="{ animationDelay: `${i * 0.3}s` }"
             />
           </g>
-          <defs>
-            <linearGradient id="starLine" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#00fff0" stop-opacity="0.7" />
-              <stop offset="100%" stop-color="#7f5cff" stop-opacity="0.7" />
-            </linearGradient>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <!-- Skill Stars -->
+
+          <!-- Optimized Skill Nodes -->
           <g>
             <g
               v-for="skill in visibleSkills"
-              :key="'star-' + skill.name"
+              :key="'node-' + skill.name"
               @mouseenter="hoveredSkill = skill.name"
               @mouseleave="hoveredSkill = null"
               @click.stop="activeSkill = skill"
               style="cursor: pointer"
+              class="skill-node-group"
             >
-              <!-- Star glow -->
-              <circle
-                :cx="skill.x"
-                :cy="skill.y"
-                :r="hoveredSkill === skill.name ? 72 : 56"
+              <!-- Outer glow star with subtle twinkling -->
+              <path
+                :d="getDiamondPath(skill.x, skill.y, 55)"
                 :fill="getTierGlow(skill.tier)"
-                :opacity="hoveredSkill === skill.name ? 0.28 : 0.18"
-                filter="url(#glow)"
-                style="transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1)"
-                :class="[
-                  'star-glow',
+                :opacity="0.3"
+                filter="url(#enhancedGlow)"
+                class="star-glow"
+                :class="
                   unlockedSkills.includes(skill.name)
-                    ? 'star-visible'
-                    : 'star-hidden',
-                ]"
+                    ? 'skill-visible'
+                    : 'skill-hidden'
+                "
+                :style="{ animationDelay: `${Math.random() * 5}s` }"
               />
-              <!-- Main star -->
-              <circle
-                :cx="skill.x"
-                :cy="skill.y"
-                :r="hoveredSkill === skill.name ? 52 : 40"
+
+              <!-- Main star node with brightness variation -->
+              <path
+                :d="getDiamondPath(skill.x, skill.y, 35)"
                 :fill="getTierColor(skill.tier)"
-                filter="url(#glow)"
-                style="transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1)"
-                :class="[
-                  'star-main',
+                :stroke="getTierGlow(skill.tier)"
+                :stroke-width="1.5"
+                filter="url(#enhancedGlow)"
+                class="star-brightness"
+                :class="
                   unlockedSkills.includes(skill.name)
-                    ? 'star-visible'
-                    : 'star-hidden',
-                ]"
+                    ? 'skill-visible'
+                    : 'skill-hidden'
+                "
+                :style="{ animationDelay: `${Math.random() * 4}s` }"
               />
-              <!-- Star icon: always as emoji/text -->
+
+              <!-- Inner star core with shimmer -->
+              <path
+                :d="getDiamondPath(skill.x, skill.y, 20)"
+                fill="url(#nodeGlow)"
+                :opacity="0.9"
+                class="star-shimmer"
+                :class="
+                  unlockedSkills.includes(skill.name)
+                    ? 'skill-visible'
+                    : 'skill-hidden'
+                "
+                :style="{ animationDelay: `${Math.random() * 3}s` }"
+              />
+
+              <!-- Skill icon -->
               <text
                 :x="skill.x"
-                :y="skill.y + 10"
+                :y="skill.y + 5"
                 text-anchor="middle"
-                :font-size="hoveredSkill === skill.name ? 32 : 22"
+                :font-size="16"
                 font-family="monospace"
-                fill="#fff"
-                style="
-                  pointer-events: none;
-                  transition: font-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-                "
-                :class="[
-                  'star-icon',
+                font-weight="bold"
+                fill="#ffffff"
+                filter="url(#connectionGlow)"
+                style="pointer-events: none"
+                :class="
                   unlockedSkills.includes(skill.name)
-                    ? 'star-visible'
-                    : 'star-hidden',
-                ]"
+                    ? 'skill-visible'
+                    : 'skill-hidden'
+                "
               >
                 {{ skill.icon }}
               </text>
             </g>
           </g>
         </svg>
+
+        <!-- Hover Tooltip Modal with smart positioning -->
+        <div
+          v-if="hoveredSkill && !activeSkill"
+          class="absolute pointer-events-none z-30"
+          :class="`tooltip-emerge tooltip-${getTooltipPosition()}`"
+          :style="getTooltipStyle()"
+        >
+          <div
+            class="bg-black/90 border border-cyan-400/50 rounded-xl p-4 backdrop-blur-md shadow-2xl min-w-[200px] tooltip-content"
+          >
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-2xl">{{ hoveredSkillObj?.icon }}</span>
+              <div>
+                <div class="text-cyan-300 font-bold text-lg">
+                  {{ hoveredSkillObj?.name }}
+                </div>
+                <div class="text-yellow-400 font-semibold">
+                  {{ hoveredSkillObj?.mastery }}
+                </div>
+              </div>
+            </div>
+            <div class="text-purple-300 text-sm mb-2">
+              {{ hoveredSkillObj?.category }}
+            </div>
+            <div class="flex items-center gap-2 text-sm mb-2">
+              <span class="text-cyan-400"
+                >Level {{ hoveredSkillObj?.level }}%</span
+              >
+              <span class="text-gray-400">•</span>
+              <span :class="getTierColorClass(hoveredSkillObj?.tier)">{{
+                hoveredSkillObj?.tier
+              }}</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div
+                class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
+                :style="{
+                  width:
+                    (hoveredSkillObj?.xp / hoveredSkillObj?.maxXp) * 100 + '%',
+                }"
+              ></div>
+            </div>
+            <div class="text-xs text-gray-400 mt-1 text-center">
+              {{ hoveredSkillObj?.xp }}/{{ hoveredSkillObj?.maxXp }} XP
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact System Stats Legend -->
+        <div class="absolute bottom-4 right-4 flex flex-col gap-2">
+          <div
+            class="text-center px-3 py-2 bg-black/60 border border-cyan-400/20 rounded-lg backdrop-blur-sm"
+          >
+            <div class="text-lg font-bold text-cyan-300 font-mono">
+              {{ visibleSkills.length }}
+            </div>
+            <div class="text-xs text-gray-400 uppercase tracking-wider">
+              Nodes
+            </div>
+          </div>
+          <div
+            class="text-center px-3 py-2 bg-black/60 border border-purple-400/20 rounded-lg backdrop-blur-sm"
+          >
+            <div class="text-lg font-bold text-purple-300 font-mono">
+              {{ visibleConnections.length }}
+            </div>
+            <div class="text-xs text-gray-400 uppercase tracking-wider">
+              Links
+            </div>
+          </div>
+          <div
+            class="text-center px-3 py-2 bg-black/60 border border-emerald-400/20 rounded-lg backdrop-blur-sm"
+          >
+            <div class="text-lg font-bold text-emerald-300 font-mono">
+              {{ averageMastery }}%
+            </div>
+            <div class="text-xs text-gray-400 uppercase tracking-wider">
+              Avg
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Teleport the modal to body so it's always on top -->
+
+    <!-- Enhanced Modal (keeping existing modal code but with better styling) -->
     <Teleport to="body">
       <Dialog :open="!!activeSkill" @close="activeSkill = null">
-        <DialogOverlay class="fixed inset-0 bg-black/70 z-[9999]" />
-        <div class="fixed inset-0 flex items-center justify-center z-[10000]">
+        <DialogOverlay
+          class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999]"
+        />
+        <div
+          class="fixed inset-0 flex items-center justify-center z-[10000] p-4"
+        >
           <div
-            class="bg-black/95 border border-cyan-400/20 rounded-2xl p-8 w-full max-w-lg text-white shadow-2xl relative animate-fade-in"
+            class="bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 border-2 border-cyan-400/30 rounded-2xl p-8 w-full max-w-2xl text-white shadow-2xl relative backdrop-blur-xl modal-glitch"
+            style="box-shadow: 0 0 60px rgba(34, 211, 238, 0.3)"
           >
+            <!-- Modal content remains the same but with enhanced styling -->
             <button
               @click="activeSkill = null"
-              class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 text-2xl"
+              class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 text-2xl transition-colors hover:scale-110 transform"
             >
               &times;
             </button>
             <div v-if="activeSkill">
-              <div class="flex items-center gap-4 mb-4">
-                <span class="text-4xl">{{ activeSkill.icon }}</span>
+              <div class="flex items-center gap-4 mb-6">
+                <span class="text-5xl">{{ activeSkill.icon }}</span>
                 <div>
-                  <div class="text-2xl font-bold">{{ activeSkill.name }}</div>
-                  <div class="text-yellow-400 font-semibold">
+                  <div
+                    class="text-3xl font-bold bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent"
+                  >
+                    {{ activeSkill.name }}
+                  </div>
+                  <div class="text-yellow-400 font-semibold text-lg">
                     {{ activeSkill.mastery }}
                   </div>
-                  <div class="text-xs text-cyan-300">
+                  <div class="text-sm text-cyan-300 uppercase tracking-wider">
                     {{ activeSkill.category }}
                   </div>
                 </div>
               </div>
+              <!-- Rest of modal content remains the same -->
               <div class="grid grid-cols-3 gap-4 text-sm mb-4">
-                <div class="text-center p-3 bg-gray-800/50 rounded-lg">
-                  <div class="text-cyan-400 font-bold text-lg">
+                <div
+                  class="text-center p-4 bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-xl border border-slate-600/30"
+                >
+                  <div class="text-cyan-400 font-bold text-xl">
                     {{ activeSkill.level }}%
                   </div>
                   <div class="text-gray-400">Mastery</div>
                 </div>
-                <div class="text-center p-3 bg-gray-800/50 rounded-lg">
+                <div
+                  class="text-center p-4 bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-xl border border-slate-600/30"
+                >
                   <div
                     :class="
                       activeSkill.tier === 'Legendary'
@@ -183,38 +456,40 @@
                         ? 'text-purple-400'
                         : 'text-cyan-400'
                     "
-                    class="font-bold text-lg"
+                    class="font-bold text-xl"
                   >
                     {{ activeSkill.tier }}
                   </div>
                   <div class="text-gray-400">Tier</div>
                 </div>
-                <div class="text-center p-3 bg-gray-800/50 rounded-lg">
-                  <div class="text-emerald-400 font-bold text-lg">
+                <div
+                  class="text-center p-4 bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-xl border border-slate-600/30"
+                >
+                  <div class="text-emerald-400 font-bold text-xl">
                     {{ activeSkill.unlocked }}
                   </div>
                   <div class="text-gray-400">Unlocked</div>
                 </div>
               </div>
-              <div class="mb-4">
-                <div class="text-gray-400 text-sm mb-1">Skill Description</div>
-                <div class="text-white leading-relaxed">
+              <div class="mb-6">
+                <div class="text-gray-400 text-sm mb-2">
+                  Neural Pathway Description
+                </div>
+                <div class="text-white leading-relaxed text-lg">
                   {{ activeSkill.description }}
                 </div>
               </div>
-              <div class="mb-4">
-                <div class="text-gray-400 text-sm mb-1">
-                  Experience Progress
-                </div>
-                <div class="w-full bg-gray-700 rounded-full h-2 mb-1">
+              <div class="mb-6">
+                <div class="text-gray-400 text-sm mb-2">Experience Matrix</div>
+                <div class="w-full bg-gray-700 rounded-full h-3 mb-2">
                   <div
-                    class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
+                    class="h-3 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-1000"
                     :style="{
                       width: (activeSkill.xp / activeSkill.maxXp) * 100 + '%',
                     }"
                   ></div>
                 </div>
-                <div class="text-xs text-gray-400 text-center">
+                <div class="text-sm text-gray-400 text-center">
                   {{ activeSkill.xp }}/{{ activeSkill.maxXp }} XP
                 </div>
               </div>
@@ -223,12 +498,14 @@
                   activeSkill.connections && activeSkill.connections.length > 0
                 "
               >
-                <div class="text-gray-400 text-sm mb-1">Connected Skills</div>
+                <div class="text-gray-400 text-sm mb-2">
+                  Connected Neural Nodes
+                </div>
                 <div class="flex flex-wrap gap-2">
                   <span
                     v-for="conn in activeSkill.connections"
                     :key="conn"
-                    class="px-3 py-1 bg-gray-800 rounded-full text-xs text-cyan-300 border border-cyan-400/30"
+                    class="px-4 py-2 bg-gradient-to-r from-slate-700/80 to-slate-600/80 rounded-full text-sm text-cyan-300 border border-cyan-400/30 font-mono"
                     >{{ conn }}</span
                   >
                 </div>
@@ -238,28 +515,6 @@
         </div>
       </Dialog>
     </Teleport>
-    <!-- Custom hover popover -->
-    <div
-      v-if="hoveredSkillObj && !activeSkill"
-      class="absolute z-50 bg-black/90 text-white rounded-lg px-4 py-2 shadow-lg border border-cyan-400/30 pointer-events-none"
-      :style="{
-        left: `${hoveredSkillObj.x + 40}px`,
-        top: `${hoveredSkillObj.y - 30}px`,
-        minWidth: '160px',
-        maxWidth: '220px',
-        transition: 'opacity 0.2s',
-      }"
-    >
-      <div class="font-bold text-lg mb-1 flex items-center gap-2">
-        <span class="text-2xl">{{ hoveredSkillObj.icon }}</span>
-        {{ hoveredSkillObj.name }}
-      </div>
-      <div class="text-xs text-cyan-300 mb-1">
-        {{ hoveredSkillObj.category }}
-      </div>
-      <div class="text-xs mb-1">{{ hoveredSkillObj.mastery }}</div>
-      <div class="text-xs text-gray-300">{{ hoveredSkillObj.description }}</div>
-    </div>
   </section>
 </template>
 
@@ -281,7 +536,7 @@ const constellationRef = ref(null);
 const hoveredSkill = ref(null);
 const activeSkill = ref(null);
 const svgWidth = 1200;
-const svgHeight = 700;
+const svgHeight = 400;
 
 // Skill data (now with all fields)
 const skillConstellation = [
@@ -411,16 +666,16 @@ function generateCenterBiasedPositions(count, minDist) {
   let attempts = 0;
   const centerX = svgWidth / 2;
   const centerY = svgHeight / 2;
-  const maxRadius = Math.min(svgWidth, svgHeight) * 0.45; // increased from 0.35 for more spread
+  const maxRadius = Math.min(svgWidth, svgHeight) * 0.9; // increased from 0.65 for much more spread
   while (positions.length < count && attempts < 2000) {
-    // Polar coordinates for center bias
+    // Polar coordinates for much less center bias
     const angle = Math.random() * 2 * Math.PI;
     const radius =
-      Math.sqrt(Math.random()) * maxRadius * (0.5 + 0.5 * Math.random()); // reduced center bias from 0.7 to 0.5
+      Math.sqrt(Math.random()) * maxRadius * (0.05 + 0.95 * Math.random()); // much less center bias from 0.3 to 0.05
     const x = centerX + Math.cos(angle) * radius;
     const y = centerY + Math.sin(angle) * radius;
-    // Keep within bounds
-    if (x < 80 || x > svgWidth - 80 || y < 80 || y > svgHeight - 80) {
+    // Keep within bounds with very small margins
+    if (x < 35 || x > svgWidth - 35 || y < 35 || y > svgHeight - 35) {
       attempts++;
       continue;
     }
@@ -458,31 +713,23 @@ onMounted(() => {
   // Assign center-biased random positions to each skill (client only)
   const positions = generateCenterBiasedPositions(
     skillConstellation.length,
-    120
+    35 // Further reduced spacing for better space usage
   );
   skillPositions.value = skillConstellation.map((skill, i) => ({
     ...skill,
     ...positions[i],
   }));
 
-  // Generate faint background stars (client only)
-  backgroundStars.value = Array.from({ length: 32 }, () => ({
-    x: Math.random() * svgWidth,
-    y: Math.random() * svgHeight,
-    r: 1 + Math.random() * 2,
-    opacity: 0.08 + Math.random() * 0.12,
-  }));
-
-  // Animate appearance by tier
+  // Animate appearance by tier with enhanced timing
   let delay = 0;
   tierOrder.forEach((tier) => {
     const skills = skillConstellation.filter((s) => s.tier === tier);
     skills.forEach((skill, idx) => {
       setTimeout(() => {
         unlockedSkills.value.push(skill.name);
-      }, delay + idx * 200);
+      }, delay + idx * 300); // Increased delay for better visual impact
     });
-    delay += skills.length * 200 + 200;
+    delay += skills.length * 300 + 400;
   });
 });
 
@@ -511,10 +758,18 @@ const visibleConnections = computed(() => {
   return lines;
 });
 
-// Hovered skill object for popover
+// Hovered skill object for tooltip
 const hoveredSkillObj = computed(() =>
-  skillPositions.value.find((s) => s.name === hoveredSkill.value)
+  visibleSkills.value.find((s) => s.name === hoveredSkill.value)
 );
+
+// Average mastery calculation
+const averageMastery = computed(() => {
+  return Math.round(
+    skillConstellation.reduce((acc, skill) => acc + skill.level, 0) /
+      skillConstellation.length
+  );
+});
 
 function getTierColor(tier) {
   if (tier === "Legendary") return "#ffe066";
@@ -528,113 +783,495 @@ function getTierGlow(tier) {
   if (tier === "Rare") return "#00fff0";
   return "#fff";
 }
+
+function animateStarsSequence() {
+  // Enhanced star appearance animation
+  console.log("Starting enhanced skill constellation animation");
+}
+
+function getDataStreamStyle(i) {
+  // Pre-calculate positions to avoid random calculations during render
+  const positions = [
+    { left: 10, height: 250 },
+    { left: 25, height: 320 },
+    { left: 40, height: 280 },
+    { left: 60, height: 300 },
+    { left: 75, height: 270 },
+    { left: 85, height: 290 },
+    { left: 95, height: 310 },
+    { left: 15, height: 260 },
+  ];
+
+  const pos = positions[i % positions.length];
+  return {
+    left: `${pos.left}%`,
+    height: `${pos.height}px`,
+    animationDelay: `${i * 0.5}s`,
+    animationDuration: "4s",
+  };
+}
+
+function getParticleStyle(i) {
+  // Pre-calculate positions to avoid random calculations during render
+  const positions = [
+    { left: 15, top: 20 },
+    { left: 35, top: 45 },
+    { left: 55, top: 30 },
+    { left: 75, top: 60 },
+    { left: 25, top: 70 },
+    { left: 45, top: 25 },
+    { left: 65, top: 50 },
+    { left: 85, top: 35 },
+    { left: 10, top: 80 },
+    { left: 30, top: 15 },
+    { left: 50, top: 75 },
+    { left: 70, top: 40 },
+    { left: 90, top: 65 },
+    { left: 20, top: 55 },
+    { left: 40, top: 85 },
+    { left: 60, top: 10 },
+    { left: 80, top: 25 },
+    { left: 5, top: 45 },
+    { left: 95, top: 75 },
+    { left: 12, top: 90 },
+  ];
+
+  const pos = positions[i % positions.length];
+  return {
+    left: `${pos.left}%`,
+    top: `${pos.top}%`,
+    animationDelay: `${i * 0.15}s`,
+    animationDuration: "3s",
+  };
+}
+
+function getDiamondPath(cx, cy, size) {
+  const halfSize = size / 2;
+  const curve = size * 0.2; // 20% of size for more rounded corners
+  return `M ${cx} ${cy - halfSize} 
+          Q ${cx + curve} ${cy - halfSize + curve} ${cx + halfSize} ${cy}
+          Q ${cx + halfSize - curve} ${cy + curve} ${cx} ${cy + halfSize}
+          Q ${cx - curve} ${cy + curve} ${cx - halfSize} ${cy}
+          Q ${cx - halfSize + curve} ${cy - curve} ${cx} ${cy - halfSize} Z`;
+}
+
+function getTooltipStyle() {
+  if (!hoveredSkillObj.value) return { opacity: 0 };
+
+  const skill = hoveredSkillObj.value;
+  const skillXPercent = (skill.x / 1200) * 100;
+  const skillYPercent = (skill.y / 400) * 100;
+
+  return {
+    left: `${skillXPercent}%`,
+    top: `${skillYPercent}%`,
+    transformOrigin: "center center",
+    opacity: 1,
+  };
+}
+
+function getTierColorClass(tier) {
+  if (tier === "Legendary") return "text-yellow-400";
+  if (tier === "Epic") return "text-purple-400";
+  if (tier === "Rare") return "text-cyan-400";
+  return "";
+}
+
+function getTooltipPosition() {
+  if (!hoveredSkillObj.value) return "top";
+
+  const skill = hoveredSkillObj.value;
+  const skillXPercent = (skill.x / 1200) * 100;
+  const skillYPercent = (skill.y / 400) * 100;
+
+  // Tooltip dimensions (approximate)
+  const tooltipWidth = 200; // min-w-[200px]
+  const tooltipHeight = 150; // approximate height
+  const containerWidth = 1200; // SVG width
+  const containerHeight = 400; // SVG height
+
+  // Convert percentages to actual pixels for calculation
+  const skillXPx = (skillXPercent / 100) * containerWidth;
+  const skillYPx = (skillYPercent / 100) * containerHeight;
+
+  let position = "top"; // default
+  let transform = "translate(-50%, -120%)";
+
+  // Check if tooltip fits above (default position)
+  const fitsAbove = skillYPx > tooltipHeight + 20;
+
+  if (!fitsAbove) {
+    // Priority 1: Try left
+    const fitsLeft = skillXPx > tooltipWidth + 20;
+    if (fitsLeft) {
+      position = "left";
+      transform = "translate(-120%, -50%)";
+    } else {
+      // Priority 2: Try right
+      const fitsRight = skillXPx < containerWidth - tooltipWidth - 20;
+      if (fitsRight) {
+        position = "right";
+        transform = "translate(20%, -50%)";
+      } else {
+        // Priority 3: Bottom (fallback)
+        position = "bottom";
+        transform = "translate(-50%, 20%)";
+      }
+    }
+  }
+
+  return position;
+}
 </script>
 
 <style scoped>
-.aurora-bg {
-  background: radial-gradient(ellipse at 30% 0%, #7f5cff 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 100%, #00ffd0 0%, transparent 60%),
-    linear-gradient(180deg, #3b2f7f 0%, #0a0f1c 50%, #00ffd0 100%);
-  animation: auroraMove2 16s linear infinite alternate;
-  z-index: 1;
-}
-@keyframes auroraMove2 {
-  0% {
-    background-position: 30% 0%, 70% 100%, 0% 0%;
-  }
-  100% {
-    background-position: 40% 10%, 60% 90%, 100% 100%;
-  }
-}
-.noise-overlay {
-  background: url("https://www.transparenttextures.com/patterns/noise.png");
-  opacity: 0.12;
-  z-index: 2;
-}
-.particles {
-  z-index: 3;
-}
+/* Optimized fade-in animation */
 .fade-in-section {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 .fade-in-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Star animation classes */
-.star-hidden {
-  opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.star-visible {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.star-glow.star-visible {
-  animation: starGlow 1.2s ease-out;
-}
-
-.star-main.star-visible {
-  animation: starAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.star-icon.star-visible {
-  animation: iconPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-    calc(0.2s + var(--random-delay, 0) * 0.1s) backwards;
-}
-
-@keyframes starGlow {
+/* Simplified data stream animation */
+@keyframes data-stream {
   0% {
+    transform: translateY(-100%);
     opacity: 0;
-    transform: scale(0);
+  }
+  10%,
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.animate-data-stream {
+  animation: data-stream 4s linear infinite;
+  will-change: transform;
+}
+
+/* Enhanced skill node animations with brightness effects only */
+.skill-hidden {
+  opacity: 0;
+  filter: brightness(0);
+  transition: opacity 0.8s ease-out, filter 0.8s ease-out;
+}
+
+.skill-visible {
+  opacity: 1;
+  filter: brightness(1);
+  transition: opacity 0.8s ease-out, filter 0.8s ease-out;
+}
+
+/* No hover effects - static diamonds */
+.skill-node-group {
+  cursor: pointer;
+}
+
+/* Star glow breathing effect */
+.star-glow {
+  animation: star-glow 6s ease-in-out infinite;
+}
+
+.star-brightness {
+  animation: star-brightness 5s ease-in-out infinite;
+}
+
+.star-shimmer {
+  animation: star-shimmer 4s ease-in-out infinite;
+}
+
+/* Connection line subtle glow */
+.connection-line {
+  animation: connection-glow 4s ease-in-out infinite;
+}
+
+@keyframes star-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(1.2) saturate(1.1);
+  }
+}
+
+@keyframes star-brightness {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.15) saturate(1.05);
+  }
+}
+
+@keyframes star-shimmer {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.25) saturate(1.1);
+  }
+}
+
+@keyframes connection-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.1);
+  }
+}
+
+/* Hardware accelerated transitions */
+.transition-all {
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+}
+
+/* Optimized constellation container */
+.constellation-container {
+  contain: layout style;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Remove expensive animations and use simpler alternatives */
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Optimized responsive design */
+@media (max-width: 768px) {
+  .skill-node-group {
+    transform: scale(0.9);
+  }
+
+  .skill-node-group:hover {
+    transform: scale(0.95);
+  }
+}
+
+/* Remove all complex animations and keep only essential ones */
+* {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Star animations */
+.star-twinkle {
+  animation: star-twinkle 3s ease-in-out infinite;
+}
+
+.star-pulse {
+  animation: star-pulse 2s ease-in-out infinite;
+}
+
+.star-shimmer {
+  animation: star-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
   }
   50% {
     opacity: 0.4;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 0.18;
-    transform: scale(1);
-  }
-}
-
-@keyframes starAppear {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  70% {
-    opacity: 1;
     transform: scale(1.1);
   }
+}
+
+@keyframes star-pulse {
+  0%,
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-@keyframes iconPop {
+@keyframes star-shimmer {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.3);
+  }
+}
+
+/* Enhanced pulse animation */
+
+/* Tooltip emergence animation with smart positioning */
+.tooltip-emerge {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  transform-origin: center center;
+}
+
+.tooltip-top {
+  animation-name: tooltip-emerge-top;
+}
+
+.tooltip-left {
+  animation-name: tooltip-emerge-left;
+}
+
+.tooltip-right {
+  animation-name: tooltip-emerge-right;
+}
+
+.tooltip-bottom {
+  animation-name: tooltip-emerge-bottom;
+}
+
+.tooltip-content {
+  animation: tooltip-content-emerge 0.3s ease-out forwards;
+}
+
+@keyframes tooltip-emerge-top {
   0% {
     opacity: 0;
-    transform: scale(0);
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -120%) scale(1);
+  }
+}
+
+@keyframes tooltip-emerge-left {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-120%, -50%) scale(1);
+  }
+}
+
+@keyframes tooltip-emerge-right {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(20%, -50%) scale(1);
+  }
+}
+
+@keyframes tooltip-emerge-bottom {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 20%) scale(1);
+  }
+}
+
+@keyframes tooltip-content-emerge {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(4px);
   }
   60% {
-    opacity: 1;
-    transform: scale(1.3);
+    opacity: 0.8;
+    transform: scale(1.05);
+    filter: blur(1px);
   }
   100% {
     opacity: 1;
     transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Enhanced skill node animations with brightness effects only */
+
+/* Modal Glitch Effect Animation */
+.modal-glitch {
+  animation: modal-glitch 0.6s ease-out forwards;
+}
+
+@keyframes modal-glitch {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: hue-rotate(90deg) saturate(5) brightness(1.5);
+    border-color: #ff00ff;
+  }
+  15% {
+    transform: scale(0.9) skew(2deg);
+    filter: hue-rotate(180deg) saturate(3) brightness(0.8);
+    border-color: #00ffff;
+  }
+  30% {
+    transform: scale(1.05) skew(-1deg);
+    filter: hue-rotate(270deg) saturate(4) brightness(1.2);
+    border-color: #ffff00;
+  }
+  45% {
+    transform: scale(0.95) skew(1deg);
+    filter: hue-rotate(45deg) saturate(2) brightness(0.9);
+    border-color: #ff0080;
+  }
+  60% {
+    transform: scale(1.02) skew(-0.5deg);
+    filter: hue-rotate(0deg) saturate(1.5) brightness(1.1);
+    border-color: #80ff00;
+  }
+  80% {
+    transform: scale(0.98) skew(0.2deg);
+    filter: hue-rotate(0deg) saturate(1.2) brightness(1.05);
+    border-color: #00ff80;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) skew(0deg);
+    filter: hue-rotate(0deg) saturate(1) brightness(1);
+    border-color: rgba(34, 211, 238, 0.3);
   }
 }
 </style>

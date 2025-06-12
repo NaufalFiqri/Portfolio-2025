@@ -145,9 +145,35 @@
         </svg>
       </button>
     </div>
-    <!-- <div
-      class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-40"
-    ></div> -->
+    <!-- Transition gradient to next section -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-b from-transparent via-slate-900/30 to-slate-900/80 z-40 pointer-events-none"
+    ></div>
+    <!-- Bottom tech transition elements -->
+    <div class="absolute bottom-0 left-0 w-full h-32 z-35 pointer-events-none">
+      <!-- Subtle tech grid emerging -->
+      <div class="absolute inset-0 opacity-20">
+        <div class="grid grid-cols-24 gap-1 h-full items-end p-4">
+          <div
+            v-for="i in 96"
+            :key="`transition-${i}`"
+            class="w-1 bg-gradient-to-t from-cyan-400/40 to-transparent rounded-t-full"
+            :style="{
+              height: `${Math.random() * 20 + 5}px`,
+              animationDelay: `${i * 0.03}s`,
+              animation: 'pulse 4s ease-in-out infinite',
+            }"
+          />
+        </div>
+      </div>
+      <!-- Connecting energy lines -->
+      <div
+        class="absolute bottom-4 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent"
+      ></div>
+      <div
+        class="absolute bottom-6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"
+      ></div>
+    </div>
   </section>
 </template>
 
@@ -256,16 +282,31 @@ function scrollToSkills() {
 .aurora-bg {
   background: radial-gradient(ellipse at 60% 20%, #00ffd0 0%, transparent 70%),
     radial-gradient(ellipse at 30% 80%, #7f5cff 0%, transparent 80%),
-    linear-gradient(120deg, #0a0f1c 0%, #0e2f3a 100%);
-  animation: auroraMove2 16s linear infinite alternate;
+    radial-gradient(ellipse at 80% 60%, #0d9488 0%, transparent 50%),
+    linear-gradient(120deg, #0a0f1c 0%, #0e2f3a 50%, #1e293b 100%);
+  animation: auroraMove2 20s linear infinite alternate;
   z-index: 1;
 }
 @keyframes auroraMove2 {
   0% {
-    background-position: 60% 20%, 30% 80%, 0% 0%;
+    background-position: 60% 20%, 30% 80%, 80% 60%, 0% 0%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 65% 25%, 35% 85%, 75% 55%, 25% 25%;
+    filter: hue-rotate(5deg);
+  }
+  50% {
+    background-position: 70% 30%, 40% 90%, 85% 65%, 50% 50%;
+    filter: hue-rotate(10deg);
+  }
+  75% {
+    background-position: 75% 35%, 25% 75%, 90% 70%, 75% 75%;
+    filter: hue-rotate(5deg);
   }
   100% {
-    background-position: 70% 30%, 40% 90%, 100% 100%;
+    background-position: 70% 30%, 40% 90%, 85% 65%, 100% 100%;
+    filter: hue-rotate(0deg);
   }
 }
 

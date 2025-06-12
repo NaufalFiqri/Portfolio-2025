@@ -7,33 +7,63 @@
     <div class="absolute inset-0">
       <!-- Side panels with tech patterns -->
       <div
-        class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-800/40 to-transparent"
+        class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-800/60 via-slate-800/30 to-transparent"
       >
-        <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 opacity-40">
+          <!-- Vertical energy conduits -->
           <div
             v-for="i in 20"
             :key="`left-tech-${i}`"
-            class="absolute w-px h-8 bg-cyan-400/60"
+            class="absolute w-0.5 bg-gradient-to-b from-cyan-400/60 via-cyan-400/30 to-transparent rounded-full"
             :style="{
-              left: `${10 + (i % 4) * 20}%`,
+              left: `${15 + (i % 3) * 25}%`,
               top: `${i * 5}%`,
-              animationDelay: `${i * 0.1}s`,
+              height: `${20 + Math.random() * 30}px`,
+              animationDelay: `${i * 0.15}s`,
+              animation: 'pulse 3s ease-in-out infinite',
+            }"
+          />
+          <!-- Horizontal connectors -->
+          <div
+            v-for="i in 8"
+            :key="`left-connect-${i}`"
+            class="absolute h-0.5 bg-gradient-to-r from-purple-400/40 to-transparent"
+            :style="{
+              left: '15%',
+              top: `${i * 12.5}%`,
+              width: '60%',
+              animationDelay: `${i * 0.2}s`,
+              animation: 'pulse 4s ease-in-out infinite',
             }"
           />
         </div>
       </div>
       <div
-        class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-800/40 to-transparent"
+        class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-800/60 via-slate-800/30 to-transparent"
       >
-        <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 opacity-40">
           <div
             v-for="i in 20"
             :key="`right-tech-${i}`"
-            class="absolute w-px h-8 bg-cyan-400/60"
+            class="absolute w-0.5 bg-gradient-to-b from-emerald-400/60 via-emerald-400/30 to-transparent rounded-full"
             :style="{
-              right: `${10 + (i % 4) * 20}%`,
+              right: `${15 + (i % 3) * 25}%`,
               top: `${i * 5}%`,
-              animationDelay: `${i * 0.1}s`,
+              height: `${20 + Math.random() * 30}px`,
+              animationDelay: `${i * 0.15}s`,
+              animation: 'pulse 3s ease-in-out infinite',
+            }"
+          />
+          <div
+            v-for="i in 8"
+            :key="`right-connect-${i}`"
+            class="absolute h-0.5 bg-gradient-to-l from-teal-400/40 to-transparent"
+            :style="{
+              right: '15%',
+              top: `${i * 12.5}%`,
+              width: '60%',
+              animationDelay: `${i * 0.2}s`,
+              animation: 'pulse 4s ease-in-out infinite',
             }"
           />
         </div>
@@ -41,15 +71,40 @@
 
       <!-- Ceiling with tech grid -->
       <div
-        class="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-slate-800/60 to-transparent"
+        class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-800/80 via-slate-900/60 to-transparent"
       >
-        <div class="absolute inset-0 opacity-40">
-          <div class="grid grid-cols-12 gap-2 p-4">
+        <!-- Aurora glow seeping through -->
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-cyan-900/30 via-purple-900/20 to-transparent opacity-60"
+        ></div>
+        <div class="absolute inset-0 opacity-50">
+          <div class="grid grid-cols-16 gap-3 p-6">
             <div
-              v-for="i in 48"
+              v-for="i in 64"
               :key="`ceiling-${i}`"
-              class="w-2 h-2 bg-cyan-400/40 rounded-full animate-pulse"
-              :style="{ animationDelay: `${i * 0.05}s` }"
+              class="w-2 h-2 rounded-full animate-pulse"
+              :class="
+                i % 4 === 0
+                  ? 'bg-cyan-400/50'
+                  : i % 4 === 1
+                  ? 'bg-purple-400/40'
+                  : i % 4 === 2
+                  ? 'bg-emerald-400/45'
+                  : 'bg-slate-400/30'
+              "
+              :style="{
+                animationDelay: `${i * 0.08}s`,
+                animation: 'pulse 2s ease-in-out infinite',
+              }"
+            />
+          </div>
+          <!-- Ceiling connection lines -->
+          <div class="absolute top-8 left-8 right-8 grid grid-cols-4 gap-8">
+            <div
+              v-for="i in 4"
+              :key="`ceiling-line-${i}`"
+              class="h-0.5 bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent animate-pulse"
+              :style="{ animationDelay: `${i * 0.5}s` }"
             />
           </div>
         </div>
@@ -57,22 +112,68 @@
 
       <!-- Floor grid pattern -->
       <div
-        class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-800/60 to-transparent"
+        class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-slate-900/80 to-transparent"
       >
-        <div class="absolute inset-0 opacity-50">
-          <div class="grid grid-cols-24 gap-1 p-4">
+        <div class="absolute inset-0 opacity-60">
+          <div class="grid grid-cols-32 gap-1 p-6 h-full items-end">
             <div
-              v-for="i in 120"
+              v-for="i in 128"
               :key="`floor-${i}`"
-              class="w-1 h-1 bg-emerald-400/30 rounded-full"
+              class="w-1 rounded-t-full"
+              :class="
+                i % 6 === 0
+                  ? 'bg-gradient-to-t from-cyan-400/40 to-transparent'
+                  : i % 6 === 1
+                  ? 'bg-gradient-to-t from-emerald-400/35 to-transparent'
+                  : i % 6 === 2
+                  ? 'bg-gradient-to-t from-purple-400/30 to-transparent'
+                  : 'bg-gradient-to-t from-slate-400/25 to-transparent'
+              "
               :style="{
-                animationDelay: `${i * 0.02}s`,
+                height: `${8 + Math.random() * 16}px`,
+                animationDelay: `${i * 0.025}s`,
                 animation: 'pulse 3s ease-in-out infinite',
               }"
             />
           </div>
+          <!-- Floor connection grid -->
+          <div class="absolute bottom-8 left-8 right-8 space-y-2">
+            <div
+              class="h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
+            ></div>
+            <div
+              class="h-px bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent"
+            ></div>
+            <div
+              class="h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent"
+            ></div>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Floating energy particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        v-for="i in 15"
+        :key="`particle-${i}`"
+        class="absolute w-1 h-1 rounded-full animate-pulse"
+        :class="
+          i % 3 === 0
+            ? 'bg-cyan-400/60'
+            : i % 3 === 1
+            ? 'bg-purple-400/50'
+            : 'bg-emerald-400/55'
+        "
+        :style="{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animationDelay: `${i * 0.3}s`,
+          animation: `float-${i % 3} ${
+            4 + Math.random() * 2
+          }s ease-in-out infinite`,
+        }"
+      />
     </div>
 
     <div class="max-w-7xl mx-auto px-6 relative">
@@ -96,7 +197,7 @@
       </div>
 
       <!-- Navigation Controls -->
-      <div class="flex justify-center items-center space-x-8 mb-16">
+      <!-- <div class="flex justify-center items-center space-x-8 mb-16">
         <button
           @click="scrollLeft"
           class="group p-4 bg-gradient-to-r from-slate-800/80 to-slate-700/80 border border-cyan-500/40 rounded-full text-cyan-400 hover:from-cyan-500/20 hover:to-emerald-500/20 hover:border-cyan-300 transition-all duration-500 backdrop-blur-md shadow-lg hover:shadow-cyan-400/25"
@@ -138,7 +239,7 @@
             />
           </svg>
         </button>
-      </div>
+      </div> -->
 
       <!-- Crystal Chamber Layout -->
       <div class="relative">
@@ -578,5 +679,88 @@ onMounted(() => {
 <style scoped>
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+.transition-bg {
+  transition: background-color 1s ease-in-out;
+}
+
+/* Floating particle animations */
+@keyframes float-0 {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+@keyframes float-1 {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-8px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes float-2 {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-25px) translateX(5px);
+    opacity: 1;
+  }
+}
+
+/* Enhanced pulse animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Tech line animations */
+@keyframes techPulse {
+  0%,
+  100% {
+    opacity: 0.2;
+    box-shadow: 0 0 5px currentColor;
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px currentColor;
+  }
+}
+
+/* Aurora remnant animation */
+@keyframes auroraRemnant {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Apply aurora remnant animation */
+.transition-bg .absolute.inset-0:first-child {
+  animation: auroraRemnant 8s ease-in-out infinite;
 }
 </style>
