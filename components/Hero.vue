@@ -145,9 +145,9 @@
         </svg>
       </button>
     </div>
-    <div
+    <!-- <div
       class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-40"
-    ></div>
+    ></div> -->
   </section>
 </template>
 

@@ -1,8 +1,7 @@
 <template>
   <Hero />
-  <!-- <SectionDivider /> -->
-  <ProfileCore />
-  <SectionDivider />
+  <SkillConstellation />
+  <CrystalVault />
   <Footer />
 </template>
 
