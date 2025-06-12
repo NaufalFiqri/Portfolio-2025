@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import LoadingScreen from "~/components/LoadingScreen.vue";
+import FloatingSocialLinks from "~/components/FloatingSocialLinks.vue";
 
 const loading = ref(true);
 
@@ -17,6 +18,7 @@ onMounted(() => {
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <FloatingSocialLinks />
   </div>
 </template>
 

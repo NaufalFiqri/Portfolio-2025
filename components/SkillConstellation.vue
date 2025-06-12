@@ -541,116 +541,130 @@ const svgHeight = 400;
 // Skill data (now with all fields)
 const skillConstellation = [
   {
-    name: "TypeScript",
-    tier: "Legendary",
-    icon: "⚡",
-    connections: ["React", "Vue 3", "Node.js"],
-    level: 87,
+    name: "HTML",
+    tier: "Rare",
+    icon: "🏗️",
+    connections: ["CSS", "JavaScript", "Figma"],
+    level: 95,
     category: "Core Foundation",
-    mastery: "Type Guardian",
-    unlocked: "2023",
-    xp: 8750,
+    mastery: "Markup Master",
+    unlocked: "2021",
+    xp: 9500,
     maxXp: 10000,
     description:
-      "Static analysis. Runtime safety. The foundation of scalable architecture.",
+      "Semantic structure architect. Foundation of web development mastered.",
   },
   {
-    name: "React",
+    name: "CSS",
     tier: "Epic",
-    icon: "⚛️",
-    connections: ["TypeScript", "Tailwind CSS"],
-    level: 89,
-    category: "Frontend Mastery",
-    mastery: "Component Architect",
-    unlocked: "2022",
-    xp: 8900,
+    icon: "🎨",
+    connections: ["HTML", "JavaScript", "Figma"],
+    level: 92,
+    category: "Design System",
+    mastery: "Style Sovereign",
+    unlocked: "2021",
+    xp: 9200,
     maxXp: 10000,
     description:
-      "Virtual DOM manipulation. State orchestration. UI harmony achieved.",
+      "Visual design mastery. Responsive layouts and modern styling perfected.",
+  },
+  {
+    name: "JavaScript",
+    tier: "Legendary",
+    icon: "⚡",
+    connections: ["HTML", "CSS", "Vue 3", "React"],
+    level: 85,
+    category: "Core Programming",
+    mastery: "Script Wielder",
+    unlocked: "2022",
+    xp: 8500,
+    maxXp: 10000,
+    description:
+      "Dynamic interactions. DOM manipulation. Modern ES6+ features mastered.",
   },
   {
     name: "Vue 3",
     tier: "Legendary",
     icon: "🔥",
-    connections: ["TypeScript", "REST APIs"],
-    level: 94,
-    category: "Frontend Mastery",
-    mastery: "Reactive Sovereign",
-    unlocked: "2021",
-    xp: 9400,
-    maxXp: 10000,
-    description:
-      "Composition API mastery. Reactivity perfected. User experience elevated.",
-  },
-  {
-    name: "Tailwind CSS",
-    tier: "Legendary",
-    icon: "🎨",
-    connections: ["React", "Figma"],
-    level: 96,
-    category: "Design System",
-    mastery: "Style Weaver",
-    unlocked: "2022",
-    xp: 9600,
-    maxXp: 10000,
-    description:
-      "Utility-first philosophy. Design system architect. Pixel-perfect execution.",
-  },
-  {
-    name: "Figma",
-    tier: "Rare",
-    icon: "✨",
-    connections: ["Tailwind CSS"],
-    level: 82,
-    category: "Design System",
-    mastery: "Interface Sculptor",
-    unlocked: "2022",
-    xp: 8200,
-    maxXp: 10000,
-    description:
-      "Design thinking. Prototype to production. Visual communication mastered.",
-  },
-  {
-    name: "Node.js",
-    tier: "Rare",
-    icon: "🔧",
-    connections: ["TypeScript", "REST APIs"],
+    connections: ["JavaScript", "Tailwind CSS"],
     level: 78,
-    category: "Backend Systems",
-    mastery: "Runtime Controller",
+    category: "Frontend Framework",
+    mastery: "Reactive Developer",
     unlocked: "2023",
     xp: 7800,
     maxXp: 10000,
     description:
-      "Server architecture. Event-driven design. Performance optimization core.",
+      "Currently learning. Composition API and reactive programming in progress.",
   },
   {
-    name: "REST APIs",
-    tier: "Epic",
-    icon: "🌐",
-    connections: ["Vue 3", "Node.js", "Git"],
-    level: 85,
-    category: "Data Integration",
-    mastery: "Protocol Master",
-    unlocked: "2022",
-    xp: 8500,
+    name: "Tailwind CSS",
+    tier: "Rare",
+    icon: "💨",
+    connections: ["CSS", "Vue 3", "React"],
+    level: 82,
+    category: "CSS Framework",
+    mastery: "Utility Master",
+    unlocked: "2023",
+    xp: 8200,
     maxXp: 10000,
     description:
-      "HTTP mastery. Data flow architect. Service integration expert.",
+      "Utility-first approach. Rapid prototyping and responsive design specialist.",
+  },
+  {
+    name: "React",
+    tier: "Legendary",
+    icon: "⚛️",
+    connections: ["JavaScript", "TypeScript", "Tailwind CSS"],
+    level: 65,
+    category: "Frontend Framework",
+    mastery: "Component Builder",
+    unlocked: "2023",
+    xp: 6500,
+    maxXp: 10000,
+    description:
+      "Adequate knowledge. Component architecture and hooks understanding.",
+  },
+  {
+    name: "TypeScript",
+    tier: "Legendary",
+    icon: "🛡️",
+    connections: ["JavaScript", "React"],
+    level: 60,
+    category: "Programming Language",
+    mastery: "Type Explorer",
+    unlocked: "2023",
+    xp: 6000,
+    maxXp: 10000,
+    description:
+      "Adequate proficiency. Type safety and modern development practices.",
+  },
+  {
+    name: "Figma",
+    tier: "Epic",
+    icon: "✨",
+    connections: ["HTML", "CSS"],
+    level: 68,
+    category: "Design Tool",
+    mastery: "Design Apprentice",
+    unlocked: "2022",
+    xp: 6800,
+    maxXp: 10000,
+    description:
+      "Adequate design skills. UI/UX prototyping and design system creation.",
   },
   {
     name: "Git",
     tier: "Epic",
     icon: "📚",
-    connections: ["REST APIs"],
-    level: 91,
+    connections: ["JavaScript"],
+    level: 88,
     category: "Version Control",
-    mastery: "Timeline Keeper",
+    mastery: "Repository Guardian",
     unlocked: "2021",
-    xp: 9100,
+    xp: 8800,
     maxXp: 10000,
     description:
-      "Version history mastery. Collaboration flow. Merge conflict resolver.",
+      "Version control mastery. Collaboration and code management expert.",
   },
 ];
 
@@ -663,32 +677,45 @@ const backgroundStars = ref([]); // moved to ref for client-only init
 // Center-biased random position generator
 function generateCenterBiasedPositions(count, minDist) {
   const positions = [];
-  let attempts = 0;
-  const centerX = svgWidth / 2;
-  const centerY = svgHeight / 2;
-  const maxRadius = Math.min(svgWidth, svgHeight) * 0.9; // increased from 0.65 for much more spread
-  while (positions.length < count && attempts < 2000) {
-    // Polar coordinates for much less center bias
-    const angle = Math.random() * 2 * Math.PI;
-    const radius =
-      Math.sqrt(Math.random()) * maxRadius * (0.05 + 0.95 * Math.random()); // much less center bias from 0.3 to 0.05
-    const x = centerX + Math.cos(angle) * radius;
-    const y = centerY + Math.sin(angle) * radius;
-    // Keep within bounds with very small margins
-    if (x < 35 || x > svgWidth - 35 || y < 35 || y > svgHeight - 35) {
-      attempts++;
-      continue;
+  const margin = 60;
+  const usableWidth = svgWidth - 2 * margin;
+  const usableHeight = svgHeight - 2 * margin;
+
+  // Create a grid-based distribution for better spacing
+  const cols = Math.ceil(Math.sqrt(count * (usableWidth / usableHeight)));
+  const rows = Math.ceil(count / cols);
+  const cellWidth = usableWidth / cols;
+  const cellHeight = usableHeight / rows;
+
+  let skillIndex = 0;
+
+  // Distribute skills across grid cells with randomization
+  for (let row = 0; row < rows && skillIndex < count; row++) {
+    for (let col = 0; col < cols && skillIndex < count; col++) {
+      // Calculate cell boundaries
+      const cellLeft = margin + col * cellWidth;
+      const cellTop = margin + row * cellHeight;
+      const cellRight = cellLeft + cellWidth;
+      const cellBottom = cellTop + cellHeight;
+
+      // Add random offset within cell (with padding to avoid edges)
+      const padding = minDist;
+      const x = cellLeft + padding + Math.random() * (cellWidth - 2 * padding);
+      const y = cellTop + padding + Math.random() * (cellHeight - 2 * padding);
+
+      // Ensure position is within bounds
+      if (
+        x >= margin &&
+        x <= svgWidth - margin &&
+        y >= margin &&
+        y <= svgHeight - margin
+      ) {
+        positions.push({ x, y });
+        skillIndex++;
+      }
     }
-    const tooClose = positions.some((pos) => {
-      const dx = pos.x - x;
-      const dy = pos.y - y;
-      return Math.sqrt(dx * dx + dy * dy) < minDist;
-    });
-    if (!tooClose) {
-      positions.push({ x, y });
-    }
-    attempts++;
   }
+
   return positions;
 }
 
@@ -713,7 +740,7 @@ onMounted(() => {
   // Assign center-biased random positions to each skill (client only)
   const positions = generateCenterBiasedPositions(
     skillConstellation.length,
-    35 // Further reduced spacing for better space usage
+    25 // Reduced minimum distance since grid ensures better spacing
   );
   skillPositions.value = skillConstellation.map((skill, i) => ({
     ...skill,
