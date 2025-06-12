@@ -1,8 +1,10 @@
 <template>
-  <section
-    id="projects"
-    class="relative min-h-screen py-32 bg-gradient-to-b from-slate-900 via-gray-900 to-black overflow-hidden"
-  >
+  <section id="projects" class="relative min-h-screen py-32 overflow-hidden">
+    <!-- Top Gradient to Match SkillConstellation Bottom -->
+    <div
+      class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black/50 via-slate-900/30 to-transparent z-5 pointer-events-none"
+    ></div>
+
     <!-- Deep Aurora Vault Atmosphere -->
     <div class="absolute inset-0 pointer-events-none z-0">
       <div

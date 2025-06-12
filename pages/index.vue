@@ -3,7 +3,6 @@
   <SkillConstellation />
   <CrystalVault />
   <LifeLoadouts />
-  <Footer />
 </template>
 
 <script setup>

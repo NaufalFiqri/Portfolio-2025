@@ -2,8 +2,13 @@
   <section
     id="loadouts"
     ref="sectionRef"
-    class="relative py-16 bg-gradient-to-b from-slate-900 to-black overflow-hidden"
+    class="relative py-16 overflow-hidden"
   >
+    <!-- Top Black Gradient to Match CrystalVault Bottom -->
+    <div
+      class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-5 pointer-events-none"
+    ></div>
+
     <!-- Enhanced Background with Scanlines -->
     <div class="absolute inset-0">
       <!-- Animated scanlines -->
@@ -769,7 +774,7 @@ const loadouts = [
 const biodata = reactive({
   name: "Naufal Fiqri",
   class: "Full-Stack Developer",
-  level: 25,
+  level: 24,
   experience: "Central Processing Unit",
   rank: "Elite",
   projectsCompleted: 6,

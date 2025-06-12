@@ -1,10 +1,5 @@
 <template>
   <section id="skills" class="relative min-h-screen overflow-hidden">
-    <!-- Simplified Background -->
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-slate-900 via-gray-900 to-black"
-    ></div>
-
     <!-- Optimized Neural Network Background -->
     <div class="absolute inset-0 opacity-15">
       <svg
@@ -219,7 +214,7 @@
           <!-- Connection lines with dotted style -->
           <g>
             <line
-              v-for="(conn, i) in visibleConnections"
+              v-for="(conn, i) in animatedConnections"
               :key="'conn-' + i"
               :x1="conn.x1"
               :y1="conn.y1"
@@ -230,8 +225,8 @@
               stroke-dasharray="8,4"
               :opacity="0.7"
               filter="url(#connectionGlow)"
-              class="connection-line"
-              :style="{ animationDelay: `${i * 0.3}s` }"
+              class="connection-line-animated"
+              :style="{ animationDelay: `${i * 0.1}s` }"
             />
           </g>
 
@@ -378,7 +373,7 @@
             class="text-center px-3 py-2 bg-black/60 border border-purple-400/20 rounded-lg backdrop-blur-sm"
           >
             <div class="text-lg font-bold text-purple-300 font-mono">
-              {{ visibleConnections.length }}
+              {{ animatedConnections.length }}
             </div>
             <div class="text-xs text-gray-400 uppercase tracking-wider">
               Links
@@ -535,6 +530,8 @@ const visible = ref(false);
 const constellationRef = ref(null);
 const hoveredSkill = ref(null);
 const activeSkill = ref(null);
+const unlockedSkills = ref([]); // names of skills to show
+const animatedConnections = ref([]); // for line animations
 const svgWidth = 1200;
 const svgHeight = 400;
 
@@ -627,7 +624,7 @@ const skillConstellation = [
   {
     name: "TypeScript",
     tier: "Legendary",
-    icon: "🛡️",
+    icon: "��️",
     connections: ["JavaScript", "React"],
     level: 60,
     category: "Programming Language",
@@ -671,7 +668,6 @@ const skillConstellation = [
 // Tier order for appearance
 const tierOrder = ["Legendary", "Epic", "Rare"];
 const skillPositions = ref([]); // [{x, y, ...skill}]
-const unlockedSkills = ref([]); // names of skills to show
 const backgroundStars = ref([]); // moved to ref for client-only init
 
 // Center-biased random position generator
@@ -754,11 +750,31 @@ onMounted(() => {
     skills.forEach((skill, idx) => {
       setTimeout(() => {
         unlockedSkills.value.push(skill.name);
+
+        // If this is the last star, start line animations
+        if (unlockedSkills.value.length === skillConstellation.length) {
+          setTimeout(() => {
+            animateLines();
+          }, 500); // Wait 500ms after last star appears
+        }
       }, delay + idx * 300); // Increased delay for better visual impact
     });
     delay += skills.length * 300 + 400;
   });
 });
+
+// Function to animate lines appearing one by one
+function animateLines() {
+  const allConnections = visibleConnections.value;
+  allConnections.forEach((connection, index) => {
+    setTimeout(() => {
+      animatedConnections.value.push({
+        ...connection,
+        animationIndex: index,
+      });
+    }, index * 200); // 200ms delay between each line
+  });
+}
 
 // Only show unlocked skills
 const visibleSkills = computed(() =>
@@ -1018,6 +1034,29 @@ function getTooltipPosition() {
 /* Connection line subtle glow */
 .connection-line {
   animation: connection-glow 4s ease-in-out infinite;
+}
+
+/* Animated connection lines that draw from point to point */
+.connection-line-animated {
+  stroke-dasharray: 8, 4;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  animation: line-draw-move 1.5s ease-out forwards,
+    connection-glow 4s ease-in-out infinite 1.5s;
+}
+
+@keyframes line-draw-move {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.7;
+  }
 }
 
 @keyframes star-glow {

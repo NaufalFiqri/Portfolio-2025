@@ -229,10 +229,6 @@
         </svg>
       </button>
     </div>
-    <!-- Transition gradient to next section -->
-    <div
-      class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-b from-transparent via-slate-900/30 to-slate-900/80 z-40 pointer-events-none"
-    ></div>
     <!-- Bottom tech transition elements -->
     <div class="absolute bottom-0 left-0 w-full h-32 z-35 pointer-events-none">
       <!-- Subtle tech grid emerging -->
@@ -364,7 +360,7 @@ function scrollToSkills() {
 
 <style scoped>
 .dark-bg {
-  background: #0a0f1c;
+  background: transparent;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
