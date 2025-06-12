@@ -1,7 +1,7 @@
 <template>
   <section
     id="hero"
-    class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden dark-bg"
+    class="relative min-h-screen flex flex-col justify-center items-center overflow-hidden dark-bg scroll-snap-section"
   >
     <!-- Animated Aurora Gradient Background -->
     <div class="aurora-bg absolute inset-0 pointer-events-none z-0"></div>
@@ -386,5 +386,11 @@ function scrollToSkills() {
   font-family: "Orbitron", "Share Tech Mono", "serif";
   font-size: 1.25rem;
   letter-spacing: 0.1em;
+}
+
+/* Scroll snap section */
+.scroll-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 </style>
