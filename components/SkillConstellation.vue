@@ -515,17 +515,6 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import { Dialog, DialogOverlay } from "@headlessui/vue";
-import { Teleport } from "vue";
-// Import SVGs as Vue components from the correct path
-import TypeScriptIcon from "~/assets/Icons/typescript-svgrepo-com.svg?component";
-import ReactIcon from "~/assets/Icons/react-svgrepo-com.svg?component";
-import VueIcon from "~/assets/Icons/vue-svgrepo-com.svg?component";
-import TailwindIcon from "~/assets/Icons/tailwind-svgrepo-com.svg?component";
-import FigmaIcon from "~/assets/Icons/figma-svgrepo-com.svg?component";
-import NodeIcon from "~/assets/Icons/nodejs-icon-svgrepo-com.svg?component";
-import GitIcon from "~/assets/Icons/git-svgrepo-com.svg?component";
-import GlobeIcon from "~/assets/Icons/rest-api-svgrepo-com.svg?component";
 const visible = ref(false);
 const constellationRef = ref(null);
 const hoveredSkill = ref(null);
