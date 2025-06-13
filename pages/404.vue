@@ -1,5 +1,4 @@
 <template>
-  <Navbar />
   <section class="not-found">
     <h2>404 - Page Not Found</h2>
     <p>
@@ -7,12 +6,12 @@
       <NuxtLink to="/">Go back home</NuxtLink>
     </p>
   </section>
-  <Footer />
 </template>
 
 <script setup>
-import Navbar from "~/components/Navbar.vue";
-import Footer from "~/components/Footer.vue";
+// Removed missing component imports:
+// import Navbar from "~/components/Navbar.vue";
+// import Footer from "~/components/Footer.vue";
 </script>
 
 <style scoped>
