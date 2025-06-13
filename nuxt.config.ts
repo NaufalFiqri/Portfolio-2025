@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   css: [],
   modules: ["@nuxtjs/tailwindcss"],
+  nitro: {
+    output: {
+      dir: "dist",
+    },
+  },
   app: {
     head: {
       title: "Naufal Fiqri",
