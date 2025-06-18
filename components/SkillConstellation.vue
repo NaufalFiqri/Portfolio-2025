@@ -108,23 +108,12 @@
         >
           &gt; SKILL_CONSTELLATION.EXE
         </h2>
-
-        <div class="relative max-w-3xl mx-auto">
-          <p class="text-lg text-cyan-200 leading-relaxed mb-2">
-            Neural pathways mapped across quantum development domains. Each node
-            represents
-            <span class="text-emerald-300 font-semibold"
-              >crystallized expertise</span
-            >
-            interfacing with the digital cosmos.
-          </p>
-        </div>
       </div>
 
       <!-- Optimized Constellation Container -->
       <div
         ref="constellationRef"
-        class="relative w-full max-w-6xl h-[600px] mx-auto rounded-3xl border-2 border-cyan-400/20 bg-gradient-to-br from-black/50 via-slate-900/30 to-black/50 backdrop-blur-md shadow-2xl overflow-hidden constellation-container"
+        class="relative max-w-[90vw] h-[70vh] min-h-[400px] mx-auto rounded-3xl border-2 border-cyan-400/20 bg-gradient-to-br from-black/50 via-slate-900/30 to-black/50 backdrop-blur-md shadow-2xl overflow-hidden constellation-container"
       >
         <!-- Simplified inner interface -->
         <div
@@ -157,7 +146,9 @@
         <!-- Optimized SVG Constellation -->
         <svg
           class="absolute inset-0 w-full h-full"
-          viewBox="0 0 1200 400"
+          :width="svgWidth"
+          :height="svgHeight"
+          :viewBox="`0 0 ${svgWidth} ${svgHeight}`"
           preserveAspectRatio="none"
           style="z-index: 10"
         >
@@ -169,13 +160,6 @@
               <stop offset="70%" stop-color="#7f5cff" stop-opacity="0.4" />
               <stop offset="100%" stop-color="transparent" />
             </radialGradient>
-
-            <linearGradient id="connectionLine" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#00fff0" stop-opacity="0.8" />
-              <stop offset="50%" stop-color="#7f5cff" stop-opacity="1" />
-              <stop offset="100%" stop-color="#10b981" stop-opacity="0.8" />
-            </linearGradient>
-
             <!-- Enhanced glow filter with multiple layers -->
             <filter
               id="enhancedGlow"
@@ -194,43 +178,8 @@
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
-
-            <!-- Subtle glow for connections -->
-            <filter
-              id="connectionGlow"
-              x="-50%"
-              y="-50%"
-              width="200%"
-              height="200%"
-            >
-              <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
-
-          <!-- Connection lines with dotted style -->
-          <g>
-            <line
-              v-for="(conn, i) in animatedConnections"
-              :key="'conn-' + i"
-              :x1="conn.x1"
-              :y1="conn.y1"
-              :x2="conn.x2"
-              :y2="conn.y2"
-              stroke="url(#connectionLine)"
-              stroke-width="2.5"
-              stroke-dasharray="8,4"
-              :opacity="0.7"
-              filter="url(#connectionGlow)"
-              class="connection-line-animated"
-              :style="{ animationDelay: `${i * 0.1}s` }"
-            />
-          </g>
-
-          <!-- Optimized Skill Nodes -->
+          <!-- Only render Skill Nodes -->
           <g>
             <g
               v-for="skill in visibleSkills"
@@ -238,73 +187,49 @@
               @mouseenter="hoveredSkill = skill.name"
               @mouseleave="hoveredSkill = null"
               @click.stop="activeSkill = skill"
-              style="cursor: pointer"
               class="skill-node-group"
             >
-              <!-- Outer glow star with subtle twinkling -->
-              <path
-                :d="getDiamondPath(skill.x, skill.y, 55)"
-                :fill="getTierGlow(skill.tier)"
-                :opacity="0.3"
-                filter="url(#enhancedGlow)"
-                class="star-glow"
-                :class="
-                  unlockedSkills.includes(skill.name)
-                    ? 'skill-visible'
-                    : 'skill-hidden'
-                "
-                :style="{ animationDelay: `${Math.random() * 5}s` }"
-              />
-
-              <!-- Main star node with brightness variation -->
-              <path
-                :d="getDiamondPath(skill.x, skill.y, 35)"
-                :fill="getTierColor(skill.tier)"
-                :stroke="getTierGlow(skill.tier)"
-                :stroke-width="1.5"
-                filter="url(#enhancedGlow)"
-                class="star-brightness"
-                :class="
-                  unlockedSkills.includes(skill.name)
-                    ? 'skill-visible'
-                    : 'skill-hidden'
-                "
-                :style="{ animationDelay: `${Math.random() * 4}s` }"
-              />
-
-              <!-- Inner star core with shimmer -->
-              <path
-                :d="getDiamondPath(skill.x, skill.y, 20)"
-                fill="url(#nodeGlow)"
-                :opacity="0.9"
-                class="star-shimmer"
-                :class="
-                  unlockedSkills.includes(skill.name)
-                    ? 'skill-visible'
-                    : 'skill-hidden'
-                "
-                :style="{ animationDelay: `${Math.random() * 3}s` }"
-              />
-
-              <!-- Skill icon -->
-              <text
-                :x="skill.x"
-                :y="skill.y + 5"
-                text-anchor="middle"
-                :font-size="16"
-                font-family="monospace"
-                font-weight="bold"
-                fill="#ffffff"
-                filter="url(#connectionGlow)"
-                style="pointer-events: none"
-                :class="
-                  unlockedSkills.includes(skill.name)
-                    ? 'skill-visible'
-                    : 'skill-hidden'
-                "
-              >
-                {{ skill.icon }}
-              </text>
+              <!-- Faded colored back star (no animation) -->
+              <g :transform="`translate(${skill.x}, ${skill.y}) scale(0.64)`">
+                <g transform="translate(-87, -85.5)">
+                  <path
+                    d="M101.191 32.5681C102.062 34.9974 104.972 35.978 107.136 34.5716L133.033 17.7414C136.18 15.6962 140.157 18.7203 139.027 22.2994L129.961 51.0206C129.147 53.5986 131.072 56.2246 133.775 56.2246H169.704C173.674 56.2246 175.219 61.3833 171.903 63.5658L141.395 83.646C139.09 85.1627 138.977 88.5016 141.173 90.1713L169.948 112.052C173.108 114.454 171.216 119.496 167.255 119.226L137.497 117.2C134.619 117.004 132.486 119.826 133.46 122.541L142.32 147.245C143.618 150.862 139.566 154.049 136.356 151.936L109.107 134.001C106.89 132.541 103.892 133.607 103.093 136.138L93.0584 167.93C91.9018 171.594 86.7472 171.678 85.471 168.054L73.5633 134.237C72.6998 131.785 69.7629 130.795 67.5912 132.225L37.6436 151.937C34.4341 154.049 30.3821 150.862 31.6792 147.245L42.9341 115.862C43.8302 113.364 42.0888 110.702 39.4407 110.521L6.89455 108.305C3.06102 108.044 1.76474 103.055 4.98647 100.961L26.9913 86.6589C29.4099 85.087 29.4201 81.5497 27.0107 79.9638L2.09696 63.5658C-1.21904 61.3833 0.326301 56.2246 4.29612 56.2246H40.4446C43.2031 56.2246 45.1337 53.4981 44.2175 50.8961L32.087 16.4458C30.7685 12.7014 35.121 9.53045 38.281 11.9332L66.8808 33.6795C69.0326 35.3157 72.1543 34.3905 73.067 31.8459L83.2347 3.49776C84.5018 -0.035007 89.498 -0.0349477 90.765 3.49785L101.191 32.5681Z"
+                    :fill="getTierGlow(skill.tier)"
+                    fill-opacity="0.18"
+                    style="filter: drop-shadow(0 0 24px #000)"
+                    :class="
+                      unlockedSkills.includes(skill.name)
+                        ? 'skill-visible'
+                        : 'skill-hidden'
+                    "
+                  />
+                </g>
+              </g>
+              <!-- Main star -->
+              <g :transform="`translate(${skill.x}, ${skill.y}) scale(0.45)`">
+                <g transform="translate(-87, -85.5)">
+                  <path
+                    d="M101.191 32.5681C102.062 34.9974 104.972 35.978 107.136 34.5716L133.033 17.7414C136.18 15.6962 140.157 18.7203 139.027 22.2994L129.961 51.0206C129.147 53.5986 131.072 56.2246 133.775 56.2246H169.704C173.674 56.2246 175.219 61.3833 171.903 63.5658L141.395 83.646C139.09 85.1627 138.977 88.5016 141.173 90.1713L169.948 112.052C173.108 114.454 171.216 119.496 167.255 119.226L137.497 117.2C134.619 117.004 132.486 119.826 133.46 122.541L142.32 147.245C143.618 150.862 139.566 154.049 136.356 151.936L109.107 134.001C106.89 132.541 103.892 133.607 103.093 136.138L93.0584 167.93C91.9018 171.594 86.7472 171.678 85.471 168.054L73.5633 134.237C72.6998 131.785 69.7629 130.795 67.5912 132.225L37.6436 151.937C34.4341 154.049 30.3821 150.862 31.6792 147.245L42.9341 115.862C43.8302 113.364 42.0888 110.702 39.4407 110.521L6.89455 108.305C3.06102 108.044 1.76474 103.055 4.98647 100.961L26.9913 86.6589C29.4099 85.087 29.4201 81.5497 27.0107 79.9638L2.09696 63.5658C-1.21904 61.3833 0.326301 56.2246 4.29612 56.2246H40.4446C43.2031 56.2246 45.1337 53.4981 44.2175 50.8961L32.087 16.4458C30.7685 12.7014 35.121 9.53045 38.281 11.9332L66.8808 33.6795C69.0326 35.3157 72.1543 34.3905 73.067 31.8459L83.2347 3.49776C84.5018 -0.035007 89.498 -0.0349477 90.765 3.49785L101.191 32.5681Z"
+                    :fill="getTierGlow(skill.tier)"
+                    fill-opacity="0.85"
+                    style="filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.18))"
+                    :class="
+                      unlockedSkills.includes(skill.name)
+                        ? 'skill-visible'
+                        : 'skill-hidden'
+                    "
+                  />
+                  <!-- Add CSS3 SVG icon for CSS skill only -->
+                  <image
+                    v-if="skillIcons[skill.name]"
+                    :href="skillIcons[skill.name]"
+                    x="48"
+                    y="48"
+                    width="75"
+                    height="75"
+                  />
+                </g>
+              </g>
             </g>
           </g>
         </svg>
@@ -370,16 +295,6 @@
             </div>
           </div>
           <div
-            class="text-center px-3 py-2 bg-black/60 border border-purple-400/20 rounded-lg backdrop-blur-sm"
-          >
-            <div class="text-lg font-bold text-purple-300 font-mono">
-              {{ animatedConnections.length }}
-            </div>
-            <div class="text-xs text-gray-400 uppercase tracking-wider">
-              Links
-            </div>
-          </div>
-          <div
             class="text-center px-3 py-2 bg-black/60 border border-emerald-400/20 rounded-lg backdrop-blur-sm"
           >
             <div class="text-lg font-bold text-emerald-300 font-mono">
@@ -415,7 +330,22 @@
             </button>
             <div v-if="activeSkill">
               <div class="flex items-center gap-4 mb-6">
-                <span class="text-5xl">{{ activeSkill.icon }}</span>
+                <span
+                  v-if="skillIcons[activeSkill.name]"
+                  class="inline-block align-middle"
+                >
+                  <img
+                    :src="skillIcons[activeSkill.name]"
+                    alt="icon"
+                    style="
+                      width: 56px;
+                      height: 56px;
+                      object-fit: contain;
+                      vertical-align: middle;
+                    "
+                  />
+                </span>
+                <span v-else class="text-5xl">{{ activeSkill.icon }}</span>
                 <div>
                   <div
                     class="text-3xl font-bold bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent"
@@ -514,22 +444,42 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
+import css3Icon from "~/assets/css-3-svgrepo-com.svg";
+import html5Icon from "~/assets/html-5-svgrepo-com.svg";
+import jsIcon from "~/assets/js-svgrepo-com.svg";
+import vueIcon from "~/assets/vue-svgrepo-com.svg";
+import tailwindIcon from "~/assets/tailwind-svgrepo-com.svg";
+import reactIcon from "~/assets/react-svgrepo-com.svg";
+import typescriptIcon from "~/assets/typescript-svgrepo-com.svg";
+import figmaIcon from "~/assets/figma-svgrepo-com.svg";
+import gitIcon from "~/assets/git-svgrepo-com.svg";
+
 const visible = ref(false);
 const constellationRef = ref(null);
 const hoveredSkill = ref(null);
 const activeSkill = ref(null);
 const unlockedSkills = ref([]); // names of skills to show
-const animatedConnections = ref([]); // for line animations
-const svgWidth = 1200;
-const svgHeight = 400;
+const svgWidth = ref(1200);
+const svgHeight = ref(400);
+
+const skillIcons = {
+  HTML: html5Icon,
+  CSS: css3Icon,
+  JavaScript: jsIcon,
+  "Vue 3": vueIcon,
+  "Tailwind CSS": tailwindIcon,
+  React: reactIcon,
+  TypeScript: typescriptIcon,
+  Figma: figmaIcon,
+  Git: gitIcon,
+};
 
 // Skill data (now with all fields)
 const skillConstellation = [
   {
     name: "HTML",
     tier: "Rare",
-    icon: "🏗️",
     connections: ["CSS", "JavaScript", "Figma"],
     level: 95,
     category: "Core Foundation",
@@ -543,7 +493,6 @@ const skillConstellation = [
   {
     name: "CSS",
     tier: "Epic",
-    icon: "🎨",
     connections: ["HTML", "JavaScript", "Figma"],
     level: 92,
     category: "Design System",
@@ -557,7 +506,6 @@ const skillConstellation = [
   {
     name: "JavaScript",
     tier: "Legendary",
-    icon: "⚡",
     connections: ["HTML", "CSS", "Vue 3", "React"],
     level: 85,
     category: "Core Programming",
@@ -571,7 +519,6 @@ const skillConstellation = [
   {
     name: "Vue 3",
     tier: "Legendary",
-    icon: "🔥",
     connections: ["JavaScript", "Tailwind CSS"],
     level: 78,
     category: "Frontend Framework",
@@ -585,7 +532,6 @@ const skillConstellation = [
   {
     name: "Tailwind CSS",
     tier: "Rare",
-    icon: "💨",
     connections: ["CSS", "Vue 3", "React"],
     level: 82,
     category: "CSS Framework",
@@ -599,7 +545,6 @@ const skillConstellation = [
   {
     name: "React",
     tier: "Legendary",
-    icon: "⚛️",
     connections: ["JavaScript", "TypeScript", "Tailwind CSS"],
     level: 65,
     category: "Frontend Framework",
@@ -613,7 +558,6 @@ const skillConstellation = [
   {
     name: "TypeScript",
     tier: "Legendary",
-    icon: "��️",
     connections: ["JavaScript", "React"],
     level: 60,
     category: "Programming Language",
@@ -627,7 +571,6 @@ const skillConstellation = [
   {
     name: "Figma",
     tier: "Epic",
-    icon: "✨",
     connections: ["HTML", "CSS"],
     level: 68,
     category: "Design Tool",
@@ -641,7 +584,6 @@ const skillConstellation = [
   {
     name: "Git",
     tier: "Epic",
-    icon: "📚",
     connections: ["JavaScript"],
     level: 88,
     category: "Version Control",
@@ -660,11 +602,11 @@ const skillPositions = ref([]); // [{x, y, ...skill}]
 const backgroundStars = ref([]); // moved to ref for client-only init
 
 // Center-biased random position generator
-function generateCenterBiasedPositions(count, minDist) {
+function generateCenterBiasedPositions(count, minDist, width, height) {
   const positions = [];
   const margin = 60;
-  const usableWidth = svgWidth - 2 * margin;
-  const usableHeight = svgHeight - 2 * margin;
+  const usableWidth = width - 2 * margin;
+  const usableHeight = height - 2 * margin;
 
   // Create a grid-based distribution for better spacing
   const cols = Math.ceil(Math.sqrt(count * (usableWidth / usableHeight)));
@@ -680,52 +622,38 @@ function generateCenterBiasedPositions(count, minDist) {
       // Calculate cell boundaries
       const cellLeft = margin + col * cellWidth;
       const cellTop = margin + row * cellHeight;
-      const cellRight = cellLeft + cellWidth;
-      const cellBottom = cellTop + cellHeight;
-
       // Add random offset within cell (with padding to avoid edges)
       const padding = minDist;
       const x = cellLeft + padding + Math.random() * (cellWidth - 2 * padding);
       const y = cellTop + padding + Math.random() * (cellHeight - 2 * padding);
-
       // Ensure position is within bounds
       if (
         x >= margin &&
-        x <= svgWidth - margin &&
+        x <= width - margin &&
         y >= margin &&
-        y <= svgHeight - margin
+        y <= height - margin
       ) {
         positions.push({ x, y });
         skillIndex++;
       }
     }
   }
-
   return positions;
 }
 
-// Animate skill appearance by tier and generate random positions only on client
-onMounted(() => {
-  // Fade-in observer
-  const observer = new window.IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        visible.value = true;
-        // Start the star animation sequence after a brief delay
-        setTimeout(() => {
-          animateStarsSequence();
-        }, 500);
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.2 }
-  );
-  observer.observe(document.getElementById("skills-content"));
+// --- NEW: Only initialize constellation after scroll ---
+let hasInitialized = false;
+
+function initConstellation() {
+  if (hasInitialized) return;
+  hasInitialized = true;
 
   // Assign center-biased random positions to each skill (client only)
   const positions = generateCenterBiasedPositions(
     skillConstellation.length,
-    25 // Reduced minimum distance since grid ensures better spacing
+    25,
+    svgWidth.value,
+    svgHeight.value
   );
   skillPositions.value = skillConstellation.map((skill, i) => ({
     ...skill,
@@ -750,6 +678,77 @@ onMounted(() => {
     });
     delay += skills.length * 300 + 400;
   });
+}
+
+// Responsive: update svgWidth/svgHeight and re-init constellation on resize
+function updateSvgSizeAndReinit() {
+  if (!constellationRef.value) return;
+  const rect = constellationRef.value.getBoundingClientRect();
+  svgWidth.value = Math.max(400, Math.floor(rect.width));
+  svgHeight.value = Math.max(300, Math.floor(rect.height));
+  // Only re-generate positions if already initialized
+  if (hasInitialized) {
+    const positions = generateCenterBiasedPositions(
+      skillConstellation.length,
+      25,
+      svgWidth.value,
+      svgHeight.value
+    );
+    skillPositions.value = skillConstellation.map((skill, i) => ({
+      ...skill,
+      ...positions[i],
+    }));
+  }
+}
+
+let resizeObserver;
+
+function onScrollInitConstellation() {
+  if (window.scrollY > 0) {
+    initConstellation();
+    window.removeEventListener("scroll", onScrollInitConstellation);
+  }
+}
+
+onMounted(() => {
+  // Fade-in observer (keep as is)
+  const observer = new window.IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        visible.value = true;
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.2 }
+  );
+  observer.observe(document.getElementById("skills-content"));
+
+  // Only initialize constellation after user scrolls
+  window.addEventListener("scroll", onScrollInitConstellation, {
+    passive: true,
+  });
+
+  // If user is already scrolled (e.g. reload mid-page), initialize immediately
+  if (window.scrollY > 0) {
+    initConstellation();
+    window.removeEventListener("scroll", onScrollInitConstellation);
+  }
+
+  // Responsive: observe container size
+  updateSvgSizeAndReinit();
+  resizeObserver = new window.ResizeObserver(() => {
+    updateSvgSizeAndReinit();
+  });
+  if (constellationRef.value) {
+    resizeObserver.observe(constellationRef.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", onScrollInitConstellation);
+  if (resizeObserver && constellationRef.value) {
+    resizeObserver.unobserve(constellationRef.value);
+  }
 });
 
 // Function to animate lines appearing one by one
@@ -880,7 +879,7 @@ function getParticleStyle(i) {
 function getDiamondPath(cx, cy, size) {
   const halfSize = size / 2;
   const curve = size * 0.2; // 20% of size for more rounded corners
-  return `M ${cx} ${cy - halfSize} 
+  return `M ${cx} ${cy - halfSize}
           Q ${cx + curve} ${cy - halfSize + curve} ${cx + halfSize} ${cy}
           Q ${cx + halfSize - curve} ${cy + curve} ${cx} ${cy + halfSize}
           Q ${cx - curve} ${cy + curve} ${cx - halfSize} ${cy}
@@ -891,8 +890,8 @@ function getTooltipStyle() {
   if (!hoveredSkillObj.value) return { opacity: 0 };
 
   const skill = hoveredSkillObj.value;
-  const skillXPercent = (skill.x / 1200) * 100;
-  const skillYPercent = (skill.y / 400) * 100;
+  const skillXPercent = (skill.x / svgWidth.value) * 100;
+  const skillYPercent = (skill.y / svgHeight.value) * 100;
 
   return {
     left: `${skillXPercent}%`,
@@ -902,25 +901,18 @@ function getTooltipStyle() {
   };
 }
 
-function getTierColorClass(tier) {
-  if (tier === "Legendary") return "text-yellow-400";
-  if (tier === "Epic") return "text-purple-400";
-  if (tier === "Rare") return "text-cyan-400";
-  return "";
-}
-
 function getTooltipPosition() {
   if (!hoveredSkillObj.value) return "top";
 
   const skill = hoveredSkillObj.value;
-  const skillXPercent = (skill.x / 1200) * 100;
-  const skillYPercent = (skill.y / 400) * 100;
+  const skillXPercent = (skill.x / svgWidth.value) * 100;
+  const skillYPercent = (skill.y / svgHeight.value) * 100;
 
   // Tooltip dimensions (approximate)
   const tooltipWidth = 200; // min-w-[200px]
   const tooltipHeight = 150; // approximate height
-  const containerWidth = 1200; // SVG width
-  const containerHeight = 400; // SVG height
+  const containerWidth = svgWidth.value;
+  const containerHeight = svgHeight.value;
 
   // Convert percentages to actual pixels for calculation
   const skillXPx = (skillXPercent / 100) * containerWidth;
@@ -953,6 +945,13 @@ function getTooltipPosition() {
   }
 
   return position;
+}
+
+function getTierColorClass(tier) {
+  if (tier === "Legendary") return "text-yellow-400";
+  if (tier === "Epic") return "text-purple-400";
+  if (tier === "Rare") return "text-cyan-400";
+  return "";
 }
 </script>
 
@@ -993,13 +992,13 @@ function getTooltipPosition() {
 .skill-hidden {
   opacity: 0;
   filter: brightness(0);
-  transition: opacity 0.8s ease-out, filter 0.8s ease-out;
+  transition: opacity 2s ease-out, filter 2s ease-out;
 }
 
 .skill-visible {
   opacity: 1;
   filter: brightness(1);
-  transition: opacity 0.8s ease-out, filter 0.8s ease-out;
+  transition: opacity 2s ease-out, filter 2s ease-out;
 }
 
 /* No hover effects - static diamonds */
@@ -1020,34 +1019,7 @@ function getTooltipPosition() {
   animation: star-shimmer 4s ease-in-out infinite;
 }
 
-/* Connection line subtle glow */
-.connection-line {
-  animation: connection-glow 4s ease-in-out infinite;
-}
-
-/* Animated connection lines that draw from point to point */
-.connection-line-animated {
-  stroke-dasharray: 8, 4;
-  stroke-dashoffset: 100;
-  opacity: 0;
-  animation: line-draw-move 1.5s ease-out forwards,
-    connection-glow 4s ease-in-out infinite 1.5s;
-}
-
-@keyframes line-draw-move {
-  0% {
-    stroke-dashoffset: 100;
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.7;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 0.7;
-  }
-}
-
+/* Star glow breathing effect */
 @keyframes star-glow {
   0%,
   100% {
@@ -1079,18 +1051,6 @@ function getTooltipPosition() {
   50% {
     opacity: 1;
     filter: brightness(1.25) saturate(1.1);
-  }
-}
-
-@keyframes connection-glow {
-  0%,
-  100% {
-    opacity: 0.7;
-    filter: brightness(1);
-  }
-  50% {
-    opacity: 0.9;
-    filter: brightness(1.1);
   }
 }
 
@@ -1143,28 +1103,12 @@ function getTooltipPosition() {
 }
 
 /* Star animations */
-.star-twinkle {
-  animation: star-twinkle 3s ease-in-out infinite;
-}
-
 .star-pulse {
   animation: star-pulse 2s ease-in-out infinite;
 }
 
 .star-shimmer {
   animation: star-shimmer 1.5s ease-in-out infinite;
-}
-
-@keyframes star-twinkle {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(1.1);
-  }
 }
 
 @keyframes star-pulse {
