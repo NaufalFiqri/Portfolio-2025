@@ -460,6 +460,7 @@ const constellationRef = ref(null);
 const hoveredSkill = ref(null);
 const activeSkill = ref(null);
 const unlockedSkills = ref([]); // names of skills to show
+const animatedConnections = ref([]);
 const svgWidth = ref(1200);
 const svgHeight = ref(400);
 
