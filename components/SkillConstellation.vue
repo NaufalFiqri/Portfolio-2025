@@ -41,7 +41,7 @@
       </svg>
     </div>
 
-    <!-- Simplified Data Streams -->
+    <!--  Data Streams -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div
         v-for="i in 8"
@@ -51,7 +51,7 @@
       />
     </div>
 
-    <!-- Simplified Interface Frame -->
+    <!--  Interface Frame -->
     <div class="absolute inset-0 pointer-events-none">
       <!-- Corner brackets -->
       <div
@@ -91,11 +91,11 @@
       :class="['relative z-30 py-8 fade-in-section', { visible }]"
       id="skills-content"
     >
-      <!-- Simplified Header -->
-      <div class="text-center mb-8 relative">
+      <!--  Header -->
+      <div class="header-container text-center mb-8 relative">
         <!-- System Status -->
         <div
-          class="inline-flex items-center gap-3 mb-3 px-6 py-3 bg-black/30 border border-cyan-400/30 rounded-full backdrop-blur-sm"
+          class="system-status inline-flex items-center gap-3 mb-3 px-6 py-3 bg-black/30 border border-cyan-400/30 rounded-full backdrop-blur-sm"
         >
           <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
           <span class="text-emerald-300 font-mono text-sm tracking-wider"
@@ -104,20 +104,20 @@
         </div>
 
         <h2
-          class="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-purple-300 to-emerald-300 bg-clip-text text-transparent font-mono"
+          class="header-title text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-purple-300 to-emerald-300 bg-clip-text text-transparent font-mono"
         >
           &gt; SKILL_CONSTELLATION.EXE
         </h2>
       </div>
 
-      <!-- Optimized Constellation Container -->
+      <!--  Constellation Container -->
       <div
         ref="constellationRef"
-        class="relative max-w-[90vw] h-[70vh] min-h-[400px] mx-auto rounded-3xl border-2 border-cyan-400/20 bg-gradient-to-br from-black/50 via-slate-900/30 to-black/50 backdrop-blur-md shadow-2xl overflow-hidden constellation-container"
+        class="constellation-container relative max-w-[90vw] h-[70vh] min-h-[400px] mx-auto rounded-3xl border-2 border-cyan-400/20 bg-gradient-to-br from-black/50 via-slate-900/30 to-black/50 backdrop-blur-md shadow-2xl overflow-hidden mb-10"
       >
         <!-- Simplified inner interface -->
         <div
-          class="absolute inset-4 border border-slate-600/20 rounded-2xl bg-gradient-to-br from-slate-800/10 to-black/20"
+          class="constellation-inner absolute inset-4 border border-slate-600/20 rounded-2xl bg-gradient-to-br from-slate-800/10 to-black/20"
         >
           <div
             class="absolute top-2 left-2 w-4 h-4 border-l border-t border-cyan-400/40"
@@ -283,7 +283,7 @@
         </div>
 
         <!-- Compact System Stats Legend -->
-        <div class="absolute bottom-4 right-4 flex flex-col gap-2">
+        <div class="stats-legend absolute bottom-4 right-4 flex flex-col gap-2">
           <div
             class="text-center px-3 py-2 bg-black/60 border border-cyan-400/20 rounded-lg backdrop-blur-sm"
           >
@@ -308,7 +308,7 @@
       </div>
     </div>
 
-    <!-- Enhanced Modal (keeping existing modal code but with better styling) -->
+    <!-- Enhanced Modal -->
     <Teleport to="body">
       <Dialog :open="!!activeSkill" @close="activeSkill = null">
         <DialogOverlay
@@ -321,7 +321,7 @@
             class="bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 border-2 border-cyan-400/30 rounded-2xl p-8 w-full max-w-2xl text-white shadow-2xl relative backdrop-blur-xl modal-glitch"
             style="box-shadow: 0 0 60px rgba(34, 211, 238, 0.3)"
           >
-            <!-- Modal content remains the same but with enhanced styling -->
+            <!-- Modal content  -->
             <button
               @click="activeSkill = null"
               class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 text-2xl transition-colors hover:scale-110 transform"
@@ -1084,18 +1084,6 @@ function getTierColorClass(tier) {
   }
 }
 
-/* Optimized responsive design */
-@media (max-width: 768px) {
-  .skill-node-group {
-    transform: scale(0.9);
-  }
-
-  .skill-node-group:hover {
-    transform: scale(0.95);
-  }
-}
-
-/* Remove all complex animations and keep only essential ones */
 * {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -1136,9 +1124,6 @@ function getTierColorClass(tier) {
   }
 }
 
-/* Enhanced pulse animation */
-
-/* Tooltip emergence animation with smart positioning */
 .tooltip-emerge {
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
@@ -1228,9 +1213,6 @@ function getTierColorClass(tier) {
   }
 }
 
-/* Enhanced skill node animations with brightness effects only */
-
-/* Modal Glitch Effect Animation */
 .modal-glitch {
   animation: modal-glitch 0.6s ease-out forwards;
 }
@@ -1272,6 +1254,44 @@ function getTierColorClass(tier) {
     transform: scale(1) skew(0deg);
     filter: hue-rotate(0deg) saturate(1) brightness(1);
     border-color: rgba(34, 211, 238, 0.3);
+  }
+}
+
+@media (max-width: 769px) {
+  /* Skill Constellation */
+  .header-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .system-status {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .constellation-container {
+    height: 72vh;
+    min-height: 350px;
+    max-width: 90vw;
+  }
+
+  .constellation-inner {
+    border-radius: 1.25rem;
+  }
+
+  .stats-legend {
+    right: 1rem;
+    bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .modal-content {
+    padding: 2rem !important;
+    max-width: 90vw;
   }
 }
 </style>
