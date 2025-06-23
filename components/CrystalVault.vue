@@ -532,9 +532,6 @@
         <div
           class="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 border border-cyan-500/30 backdrop-blur-xl shadow-2xl rounded-2xl modal-content"
           @click.stop
-          :style="{
-            transformOrigin: `${modalOrigin.x}px ${modalOrigin.y}px`,
-          }"
         >
           <div class="p-8">
             <div class="flex justify-between items-start mb-6">
@@ -789,6 +786,8 @@ const scrollRight = () => {
 };
 
 const triggerVaultSequence = (project, event, index) => {
+  if (typeof window === "undefined") return;
+
   // STEP 1: IMMEDIATE VISUAL RESPONSE - Only glow effects
   const vaultElement = vaultItems.value[index];
   if (vaultElement) {
@@ -942,17 +941,12 @@ onMounted(() => {
 
 @keyframes modalEmerge {
   0% {
-    transform: scale(0.1) translateY(50px);
+    transform: scale(0.5);
     opacity: 0;
     filter: blur(10px);
   }
-  60% {
-    transform: scale(1.05) translateY(-10px);
-    opacity: 0.8;
-    filter: blur(2px);
-  }
   100% {
-    transform: scale(1) translateY(0);
+    transform: scale(1);
     opacity: 1;
     filter: blur(0);
   }
