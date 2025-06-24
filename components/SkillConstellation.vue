@@ -234,54 +234,6 @@
           </g>
         </svg>
 
-        <!-- Hover Tooltip Modal with smart positioning -->
-        <div
-          v-if="hoveredSkill && !activeSkill"
-          class="absolute pointer-events-none z-30"
-          :class="`tooltip-emerge tooltip-${getTooltipPosition()}`"
-          :style="getTooltipStyle()"
-        >
-          <div
-            class="bg-black/90 border border-cyan-400/50 rounded-xl p-4 backdrop-blur-md shadow-2xl min-w-[200px] tooltip-content"
-          >
-            <div class="flex items-center gap-3 mb-2">
-              <span class="text-2xl">{{ hoveredSkillObj?.icon }}</span>
-              <div>
-                <div class="text-cyan-300 font-bold text-lg">
-                  {{ hoveredSkillObj?.name }}
-                </div>
-                <div class="text-yellow-400 font-semibold">
-                  {{ hoveredSkillObj?.mastery }}
-                </div>
-              </div>
-            </div>
-            <div class="text-purple-300 text-sm mb-2">
-              {{ hoveredSkillObj?.category }}
-            </div>
-            <div class="flex items-center gap-2 text-sm mb-2">
-              <span class="text-cyan-400"
-                >Level {{ hoveredSkillObj?.level }}%</span
-              >
-              <span class="text-gray-400">•</span>
-              <span :class="getTierColorClass(hoveredSkillObj?.tier)">{{
-                hoveredSkillObj?.tier
-              }}</span>
-            </div>
-            <div class="w-full bg-gray-700 rounded-full h-2">
-              <div
-                class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
-                :style="{
-                  width:
-                    (hoveredSkillObj?.xp / hoveredSkillObj?.maxXp) * 100 + '%',
-                }"
-              ></div>
-            </div>
-            <div class="text-xs text-gray-400 mt-1 text-center">
-              {{ hoveredSkillObj?.xp }}/{{ hoveredSkillObj?.maxXp }} XP
-            </div>
-          </div>
-        </div>
-
         <!-- Compact System Stats Legend -->
         <div class="stats-legend absolute bottom-4 right-4 flex flex-col gap-2">
           <div
@@ -440,6 +392,51 @@
         </div>
       </Dialog>
     </Teleport>
+
+    <!-- Hover Tooltip Modal with smart positioning -->
+    <div
+      v-if="hoveredSkill && !activeSkill"
+      class="hover-tooltip absolute pointer-events-none z-30"
+      :class="`tooltip-emerge tooltip-${getTooltipPosition()}`"
+      :style="getTooltipStyle()"
+    >
+      <div
+        class="bg-black/90 border border-cyan-400/50 rounded-xl p-4 backdrop-blur-md shadow-2xl min-w-[200px] tooltip-content"
+      >
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-2xl">{{ hoveredSkillObj?.icon }}</span>
+          <div>
+            <div class="text-cyan-300 font-bold text-lg">
+              {{ hoveredSkillObj?.name }}
+            </div>
+            <div class="text-yellow-400 font-semibold">
+              {{ hoveredSkillObj?.mastery }}
+            </div>
+          </div>
+        </div>
+        <div class="text-purple-300 text-sm mb-2">
+          {{ hoveredSkillObj?.category }}
+        </div>
+        <div class="flex items-center gap-2 text-sm mb-2">
+          <span class="text-cyan-400">Level {{ hoveredSkillObj?.level }}%</span>
+          <span class="text-gray-400">•</span>
+          <span :class="getTierColorClass(hoveredSkillObj?.tier)"
+            >{ hoveredSkillObj?.tier }}</span
+          >
+        </div>
+        <div class="w-full bg-gray-700 rounded-full h-2">
+          <div
+            class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
+            :style="{
+              width: (hoveredSkillObj?.xp / hoveredSkillObj?.maxXp) * 100 + '%',
+            }"
+          ></div>
+        </div>
+        <div class="text-xs text-gray-400 mt-1 text-center">
+          {{ hoveredSkillObj?.xp }}/{{ hoveredSkillObj?.maxXp }} XP
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -1257,6 +1254,7 @@ function getTierColorClass(tier) {
   }
 }
 
+/* Media Queries */
 @media (max-width: 769px) {
   /* Skill Constellation */
   .header-container {
@@ -1292,6 +1290,56 @@ function getTierColorClass(tier) {
   .modal-content {
     padding: 2rem !important;
     max-width: 90vw;
+  }
+
+  .hover-tooltip {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .header-title {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+  .header-para {
+    font-size: 0.8rem;
+  }
+  .header-noti {
+    font-size: 0.6rem;
+  }
+  .constellation-container {
+    height: 72vh;
+    min-height: 350px;
+    max-width: 90vw;
+  }
+  .constellation-inner {
+    border-radius: 1.25rem;
+  }
+  .stats-legend {
+    right: 1rem;
+    bottom: 1rem;
+    gap: 0.5rem;
+  }
+  .modal-content {
+    padding: 2rem !important;
+    max-width: 90vw;
+  }
+  .skill-node-group {
+    width: 90%;
+    height: 90%;
+  }
+  .skill-node {
+    width: 90%;
+    height: 90%;
+  }
+
+  .hover-tooltip {
+    display: none !important;
   }
 }
 </style>

@@ -634,6 +634,43 @@
                     </div>
                   </div>
                 </div>
+                <div
+                  class="life-loadouts-card-click-hint hidden md:flex items-center gap-1 absolute bottom-3 right-3 text-xs text-cyan-300 bg-black/60 px-2 py-1 rounded-full border border-cyan-400/30 pointer-events-none select-none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19.428 15.341A8 8 0 116.343 2.257M22 12.08V12a10 10 0 10-9.05 9.95"
+                    />
+                  </svg>
+                  Tap to flip
+                </div>
+                <div
+                  class="life-loadouts-card-click-hint-mobile flex md:hidden items-center absolute bottom-3 right-3 text-cyan-300 bg-black/60 p-2 rounded-full border border-cyan-400/30 pointer-events-none select-none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19.428 15.341A8 8 0 116.343 2.257M22 12.08V12a10 10 0 10-9.05 9.95"
+                    />
+                  </svg>
+                </div>
               </div>
 
               <!-- Back Side -->
@@ -1035,7 +1072,7 @@ onMounted(() => {
   font-family: "Orbitron", monospace;
 }
 
-/* Responsive media queries for all unique class names */
+/* Media Queries */
 @media (max-width: 769px) {
   .life-loadouts-section {
     padding-top: 2rem;
@@ -1073,13 +1110,160 @@ onMounted(() => {
   .life-loadouts-nav-hint {
     margin-top: 2rem;
   }
-  /* Remove hover animation on mobile */
   .life-loadouts-card:hover,
   .life-loadouts-card-front:hover,
   .life-loadouts-card-back:hover {
     box-shadow: none !important;
     transform: none !important;
     scale: 1 !important;
+  }
+}
+@media (max-width: 480px) {
+  .life-loadouts-section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .life-loadouts-title {
+    font-size: 1.5rem;
+  }
+  .life-loadouts-desc {
+    font-size: 1rem;
+  }
+  .life-loadouts-content-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .life-loadouts-profile-col {
+    height: 100%;
+  }
+  .life-loadouts-profile-card {
+    height: 600px;
+    margin-bottom: 1rem;
+  }
+  .life-loadouts-card-front {
+    display: block !important;
+    transform: none !important;
+    z-index: 2 !important;
+    opacity: 1 !important;
+  }
+  .life-loadouts-card-back {
+    display: none !important;
+    opacity: 0 !important;
+    z-index: 1 !important;
+  }
+  .life-loadouts-card-content {
+    padding: 0.75rem;
+  }
+  .life-loadouts-card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .life-loadouts-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  .life-loadouts-card-desc {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .life-loadouts-card-trait {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .life-loadouts-card-skills-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+  .life-loadouts-card-skills-list {
+    gap: 0.25rem;
+  }
+  .life-loadouts-card-skill {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .life-loadouts-card-meta-row {
+    font-size: 0.8rem;
+  }
+  .life-loadouts-card-meta-active {
+    font-size: 0.7rem;
+  }
+  .life-loadouts-card-back-content {
+    padding: 0.75rem;
+  }
+  .life-loadouts-card-back-title {
+    font-size: 1rem;
+  }
+  .life-loadouts-card-back-achievements-title {
+    font-size: 0.8rem;
+  }
+  .life-loadouts-card-back-achievement {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+  .life-loadouts-card-back-philosophy {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+  .life-loadouts-achievements {
+    display: none;
+  }
+  .life-loadouts-action-btn {
+    align-items: center;
+  }
+  .life-loadouts-nav-hint {
+    margin-top: 1rem;
+  }
+  .life-loadouts-nav-hint-text {
+    font-size: 0.8rem;
+  }
+  /* Mastery ring size */
+  .life-loadouts-card-front .absolute.top-4.right-4.w-14.h-14 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+  .life-loadouts-card-front .absolute.top-4.right-4.w-14.h-14 svg {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  .life-loadouts-card-front
+    .absolute.top-4.right-4.w-14.h-14
+    .absolute.inset-0 {
+    font-size: 0.8rem !important;
+  }
+  .life-loadouts-card,
+  .life-loadouts-card-front,
+  .life-loadouts-card-back {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    scale: 1 !important;
+    z-index: 1 !important;
+  }
+  .life-loadouts-card,
+  .life-loadouts-card-front,
+  .life-loadouts-card-back,
+  .life-loadouts-card:hover,
+  .life-loadouts-card-front:hover,
+  .life-loadouts-card-back:hover {
+    box-shadow: none !important;
+    transform: none !important;
+    scale: 1 !important;
+    transition: none !important;
+    animation: none !important;
+    z-index: 1 !important;
+  }
+  .life-loadouts-card-click-hint {
+    display: none !important;
+  }
+  .life-loadouts-card-click-hint-mobile {
+    display: flex !important;
+  }
+  .life-loadouts-card-meta-row {
+    justify-content: space-between;
+    gap: 0.5rem;
   }
 }
 </style>

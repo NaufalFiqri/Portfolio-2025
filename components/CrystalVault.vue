@@ -1282,6 +1282,7 @@ onMounted(() => {
   transform: scale(1.1) translateY(-4px) !important;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .header-container {
     padding: 0 20px;
@@ -1339,6 +1340,44 @@ onMounted(() => {
   }
   .vault-arrow.right {
     right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .header-title {
+    font-size: 1.5rem;
+  }
+  .header-para {
+    font-size: 0.8rem;
+  }
+  .header-noti {
+    font-size: 0.6rem;
+  }
+  .chamber-container {
+    padding: 0 1rem;
+  }
+  .chamber-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .vault-item {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .vault-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+  }
+  .vault-arrow.left {
+    left: 0;
+  }
+  .vault-arrow.right {
+    right: 0rem;
   }
 }
 </style>
