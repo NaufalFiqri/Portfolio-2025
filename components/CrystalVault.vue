@@ -346,175 +346,200 @@
     ></div>
 
     <div class="max-w-7xl mx-auto px-6 relative z-30">
-      <div class="text-center mb-20">
+      <div class="header-container text-center mb-20">
         <h2
-          class="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-300 via-emerald-300 to-cyan-300 bg-clip-text text-transparent font-mono drop-shadow-[0_0_40px_rgba(34,211,238,0.5)]"
+          class="header-title text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-300 via-emerald-300 to-cyan-300 bg-clip-text text-transparent font-mono drop-shadow-[0_0_40px_rgba(34,211,238,0.5)]"
         >
           &gt; CRYSTAL_VAULT
         </h2>
         <p
-          class="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed"
+          class="header-para text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed"
         >
           Enter the quantum chamber where crystallized achievements rest upon
           illuminated pedestals of mastery.
         </p>
         <div
-          class="mt-8 inline-block px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 border border-cyan-400/30 rounded-full text-cyan-300 backdrop-blur-sm animate-pulse"
+          class="header-noti mt-8 inline-block px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 border border-cyan-400/30 rounded-full text-cyan-300 backdrop-blur-sm animate-pulse"
         >
           &lt; Chamber access granted &gt;
         </div>
       </div>
 
       <!-- Crystal Chamber Layout -->
-      <div class="relative">
+      <div class="chamber-container relative">
         <div
           ref="scrollContainer"
-          class="grid grid-cols-2 md:grid-cols-4 gap-12 overflow-x-auto scrollbar-hide pb-8"
+          class="chamber-grid grid grid-cols-2 md:grid-cols-4 gap-12 overflow-x-auto scrollbar-hide pb-8"
           style="scrollbar-width: none; -ms-overflow-style: none"
         >
-          <div
-            v-for="(project, index) in projects"
-            :key="index"
-            @click="triggerVaultSequence(project, $event, index)"
-            class="group relative cursor-pointer vault-item"
-            :ref="
-              (el) => {
-                if (el) vaultItems[index] = el;
-              }
-            "
+          <template v-for="(project, index) in visibleProjects" :key="index">
+            <div
+              @click="
+                triggerVaultSequence(
+                  project,
+                  $event,
+                  isMobile ? currentVaultIndex : index
+                )
+              "
+              class="group relative cursor-pointer vault-item"
+              :ref="
+                (el) => {
+                  if (el) vaultItems[isMobile ? currentVaultIndex : index] = el;
+                }
+              "
+            >
+              <!-- Illuminated Pedestal Base -->
+              <div class="relative pedestal-container">
+                <!-- Main pedestal structure -->
+                <div
+                  class="relative w-full h-32 bg-gradient-to-t from-slate-700 via-slate-600 to-slate-500 rounded-t-lg shadow-2xl pedestal-base"
+                >
+                  <!-- Glowing edges -->
+                  <div
+                    :class="`absolute inset-0 bg-gradient-to-t ${project.color} opacity-20 rounded-t-lg glow-edge`"
+                  />
+                  <div
+                    :class="`absolute -inset-0.5 bg-gradient-to-t ${project.color} opacity-30 rounded-t-lg blur-sm glow-outer`"
+                  />
+
+                  <!-- Tech panel details -->
+                  <div
+                    class="absolute inset-2 bg-slate-800/80 rounded border border-slate-600/50 tech-panel"
+                  >
+                    <div
+                      class="absolute top-2 left-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
+                    />
+                    <div
+                      class="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
+                      style="animation-delay: 0.5s"
+                    />
+                    <div
+                      class="absolute bottom-2 left-2 right-2 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
+                    />
+                  </div>
+
+                  <!-- Energy conduits -->
+                  <div
+                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+                  >
+                    <div
+                      class="w-8 h-4 bg-gradient-to-t from-cyan-400/60 to-transparent rounded-t-full"
+                    />
+                    <div
+                      class="absolute inset-0 w-8 h-4 bg-gradient-to-t from-emerald-400/40 to-transparent rounded-t-full animate-pulse"
+                    />
+                  </div>
+                </div>
+
+                <!-- Pedestal base -->
+                <div
+                  class="w-full h-8 bg-gradient-to-b from-slate-600 to-slate-800 shadow-xl"
+                />
+                <div
+                  class="w-11/12 mx-auto h-4 bg-gradient-to-b from-slate-700 to-slate-900 shadow-lg"
+                />
+                <div class="w-10/12 mx-auto h-2 bg-slate-900 shadow-inner" />
+              </div>
+
+              <!-- Crystal positioned on pedestal -->
+              <div
+                class="absolute -top-16 left-1/2 transform -translate-x-1/2 crystal-container"
+              >
+                <div
+                  :class="`relative w-20 h-24 bg-gradient-to-t ${project.color} rounded-t-full rounded-b-lg ${project.glowColor} shadow-2xl transform group-hover:scale-110 group-hover:-translate-y-2 backdrop-blur-sm crystal-core`"
+                >
+                  <!-- Crystal inner effects -->
+                  <div
+                    class="absolute inset-1 bg-gradient-to-t from-black/60 via-transparent to-white/20 rounded-t-full rounded-b-lg"
+                  />
+                  <div
+                    class="absolute inset-2 bg-gradient-to-t from-black/40 via-transparent to-white/10 rounded-t-full rounded-b-lg"
+                  />
+
+                  <!-- Crystal core -->
+                  <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  >
+                    <div
+                      class="w-8 h-8 bg-white/40 rounded-full animate-pulse"
+                    />
+                    <div
+                      class="absolute inset-1 w-6 h-6 bg-white/60 rounded-full animate-ping"
+                    />
+                  </div>
+
+                  <!-- Energy lines -->
+                  <div class="absolute inset-0 opacity-60">
+                    <div
+                      v-for="i in 6"
+                      :key="`energy-line-${i}`"
+                      class="absolute bg-gradient-to-t from-white/40 to-transparent rounded-full animate-pulse"
+                      :style="{
+                        left: `${40 + Math.sin(i) * 20}%`,
+                        top: `${20 + i * 10}%`,
+                        width: '2px',
+                        height: `${10 + i * 5}%`,
+                        transform: 'translateX(-50%)',
+                        animationDelay: `${i * 0.2}s`,
+                      }"
+                    />
+                  </div>
+
+                  <!-- Hover aura -->
+                  <div
+                    :class="`absolute -inset-4 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-40 transition-all duration-700 blur-lg rounded-full`"
+                  />
+                </div>
+              </div>
+
+              <!-- Project info hologram -->
+              <div
+                class="project-info absolute -bottom-8 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-md rounded-lg border border-cyan-400/20"
+              >
+                <h3
+                  class="text-white font-bold text-sm font-mono mb-1 text-center"
+                >
+                  {{ project.codename }}
+                </h3>
+                <p class="text-gray-300 text-xs text-center mb-2">
+                  {{ project.title }}
+                </p>
+                <div class="flex items-center justify-between text-xs">
+                  <div
+                    class="text-cyan-300 uppercase tracking-wider font-semibold"
+                  >
+                    {{ project.role }}
+                  </div>
+                  <div class="text-emerald-300 font-mono">
+                    {{ project.year }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Connecting energy beams between pedestals -->
+              <div
+                v-if="index < projects.length - 1 && index % 2 === 0"
+                class="absolute top-16 -right-6 w-12 h-px bg-gradient-to-r from-cyan-400/40 via-emerald-400/60 to-cyan-400/40 animate-pulse hidden md:block"
+              />
+            </div>
+          </template>
+          <!-- Mobile arrows -->
+          <button
+            v-if="isMobile && currentVaultIndex > 0"
+            class="vault-arrow left"
+            @click.stop="goLeft"
+            aria-label="Previous Vault"
           >
-            <!-- Illuminated Pedestal Base -->
-            <div class="relative pedestal-container">
-              <!-- Main pedestal structure -->
-              <div
-                class="relative w-full h-32 bg-gradient-to-t from-slate-700 via-slate-600 to-slate-500 rounded-t-lg shadow-2xl pedestal-base"
-              >
-                <!-- Glowing edges -->
-                <div
-                  :class="`absolute inset-0 bg-gradient-to-t ${project.color} opacity-20 rounded-t-lg glow-edge`"
-                />
-                <div
-                  :class="`absolute -inset-0.5 bg-gradient-to-t ${project.color} opacity-30 rounded-t-lg blur-sm glow-outer`"
-                />
-
-                <!-- Tech panel details -->
-                <div
-                  class="absolute inset-2 bg-slate-800/80 rounded border border-slate-600/50 tech-panel"
-                >
-                  <div
-                    class="absolute top-2 left-2 w-2 h-2 bg-emerald-400 rounded-full animate-pulse"
-                  />
-                  <div
-                    class="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-                    style="animation-delay: 0.5s"
-                  />
-                  <div
-                    class="absolute bottom-2 left-2 right-2 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
-                  />
-                </div>
-
-                <!-- Energy conduits -->
-                <div
-                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
-                >
-                  <div
-                    class="w-8 h-4 bg-gradient-to-t from-cyan-400/60 to-transparent rounded-t-full"
-                  />
-                  <div
-                    class="absolute inset-0 w-8 h-4 bg-gradient-to-t from-emerald-400/40 to-transparent rounded-t-full animate-pulse"
-                  />
-                </div>
-              </div>
-
-              <!-- Pedestal base -->
-              <div
-                class="w-full h-8 bg-gradient-to-b from-slate-600 to-slate-800 shadow-xl"
-              />
-              <div
-                class="w-11/12 mx-auto h-4 bg-gradient-to-b from-slate-700 to-slate-900 shadow-lg"
-              />
-              <div class="w-10/12 mx-auto h-2 bg-slate-900 shadow-inner" />
-            </div>
-
-            <!-- Crystal positioned on pedestal -->
-            <div
-              class="absolute -top-16 left-1/2 transform -translate-x-1/2 crystal-container"
-            >
-              <div
-                :class="`relative w-20 h-24 bg-gradient-to-t ${project.color} rounded-t-full rounded-b-lg ${project.glowColor} shadow-2xl transform group-hover:scale-110 group-hover:-translate-y-2 backdrop-blur-sm crystal-core`"
-              >
-                <!-- Crystal inner effects -->
-                <div
-                  class="absolute inset-1 bg-gradient-to-t from-black/60 via-transparent to-white/20 rounded-t-full rounded-b-lg"
-                />
-                <div
-                  class="absolute inset-2 bg-gradient-to-t from-black/40 via-transparent to-white/10 rounded-t-full rounded-b-lg"
-                />
-
-                <!-- Crystal core -->
-                <div
-                  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                >
-                  <div class="w-8 h-8 bg-white/40 rounded-full animate-pulse" />
-                  <div
-                    class="absolute inset-1 w-6 h-6 bg-white/60 rounded-full animate-ping"
-                  />
-                </div>
-
-                <!-- Energy lines -->
-                <div class="absolute inset-0 opacity-60">
-                  <div
-                    v-for="i in 6"
-                    :key="`energy-line-${i}`"
-                    class="absolute bg-gradient-to-t from-white/40 to-transparent rounded-full animate-pulse"
-                    :style="{
-                      left: `${40 + Math.sin(i) * 20}%`,
-                      top: `${20 + i * 10}%`,
-                      width: '2px',
-                      height: `${10 + i * 5}%`,
-                      transform: 'translateX(-50%)',
-                      animationDelay: `${i * 0.2}s`,
-                    }"
-                  />
-                </div>
-
-                <!-- Hover aura -->
-                <div
-                  :class="`absolute -inset-4 bg-gradient-to-r ${project.color} opacity-0 group-hover:opacity-40 transition-all duration-700 blur-lg rounded-full`"
-                />
-              </div>
-            </div>
-
-            <!-- Project info hologram -->
-            <div
-              class="absolute -bottom-8 left-0 right-0 p-3 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-md rounded-lg border border-cyan-400/20"
-            >
-              <h3
-                class="text-white font-bold text-sm font-mono mb-1 text-center"
-              >
-                {{ project.codename }}
-              </h3>
-              <p class="text-gray-300 text-xs text-center mb-2">
-                {{ project.title }}
-              </p>
-              <div class="flex items-center justify-between text-xs">
-                <div
-                  class="text-cyan-300 uppercase tracking-wider font-semibold"
-                >
-                  {{ project.role }}
-                </div>
-                <div class="text-emerald-300 font-mono">
-                  {{ project.year }}
-                </div>
-              </div>
-            </div>
-
-            <!-- Connecting energy beams between pedestals -->
-            <div
-              v-if="index < projects.length - 1 && index % 2 === 0"
-              class="absolute top-16 -right-6 w-12 h-px bg-gradient-to-r from-cyan-400/40 via-emerald-400/60 to-cyan-400/40 animate-pulse hidden md:block"
-            />
-          </div>
+            &#8592;
+          </button>
+          <button
+            v-if="isMobile && currentVaultIndex < projects.length - 1"
+            class="vault-arrow right"
+            @click.stop="goRight"
+            aria-label="Next Vault"
+          >
+            &#8594;
+          </button>
         </div>
       </div>
     </div>
@@ -698,7 +723,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 const scrollContainer = ref(null);
 const selectedProject = ref(null);
@@ -707,6 +732,31 @@ const clickedIndex = ref(-1);
 const beamOrigin = ref({ x: 0, y: 0 });
 const modalOrigin = ref({ x: 0, y: 0 });
 const vaultItems = ref([]);
+const currentVaultIndex = ref(0);
+
+// Only show one project on mobile
+const isMobile = ref(false);
+const updateIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768;
+};
+if (typeof window !== "undefined") {
+  updateIsMobile();
+  window.addEventListener("resize", updateIsMobile);
+}
+
+const visibleProjects = computed(() => {
+  if (isMobile.value) {
+    return [projects[currentVaultIndex.value]];
+  }
+  return projects;
+});
+
+const goLeft = () => {
+  if (currentVaultIndex.value > 0) currentVaultIndex.value--;
+};
+const goRight = () => {
+  if (currentVaultIndex.value < projects.length - 1) currentVaultIndex.value++;
+};
 
 const projects = [
   {
@@ -1230,5 +1280,65 @@ onMounted(() => {
 
 .group:hover .crystal-core {
   transform: scale(1.1) translateY(-4px) !important;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 20px;
+  }
+  .header-title {
+    font-size: 2.5rem;
+  }
+  .header-para {
+    font-size: 1rem;
+  }
+  .header-noti {
+    font-size: 0.8rem;
+  }
+  .chamber-container {
+    padding: 0 20px;
+  }
+  .chamber-grid {
+    grid-template-columns: 1fr !important;
+    position: relative;
+    justify-items: center;
+  }
+  .vault-item {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  .pedestal-container {
+    padding: 0 20px;
+  }
+  .pedestal-base {
+  }
+  .project-info {
+  }
+  .vault-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+    background: rgba(34, 211, 238, 0.15);
+    border: 2px solid #22d3ee;
+    color: #22d3ee;
+    font-size: 2rem;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 12px 0 #0ff3;
+  }
+  .vault-arrow.left {
+    left: 0;
+  }
+  .vault-arrow.right {
+    right: 0;
+  }
 }
 </style>
