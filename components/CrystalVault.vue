@@ -1346,7 +1346,7 @@ onMounted(() => {
 @media (max-width: 480px) {
   .header-container {
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
   }
   .header-title {
     font-size: 1.5rem;
@@ -1358,7 +1358,7 @@ onMounted(() => {
     font-size: 0.6rem;
   }
   .chamber-container {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
   .chamber-grid {
     grid-template-columns: 1fr !important;

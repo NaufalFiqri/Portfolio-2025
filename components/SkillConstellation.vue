@@ -420,9 +420,9 @@
         <div class="flex items-center gap-2 text-sm mb-2">
           <span class="text-cyan-400">Level {{ hoveredSkillObj?.level }}%</span>
           <span class="text-gray-400">•</span>
-          <span :class="getTierColorClass(hoveredSkillObj?.tier)"
-            >{ hoveredSkillObj?.tier }}</span
-          >
+          <span :class="getTierColorClass(hoveredSkillObj?.tier)">{{
+            hoveredSkillObj?.tier
+          }}</span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2">
           <div

@@ -177,30 +177,23 @@
                   <div
                     v-for="(value, stat) in biodata.stats"
                     :key="stat"
-                    class="flex items-center justify-between mb-2 life-loadouts-stat-row"
+                    class="mb-3"
                   >
-                    <span
-                      class="text-gray-300 capitalize text-sm life-loadouts-stat-label"
-                      >{{ stat }}:</span
-                    >
-                    <div
-                      class="flex items-center space-x-2 life-loadouts-stat-value"
-                    >
-                      <span class="text-cyan-400 font-bold text-sm w-8">{{
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-gray-300 capitalize text-sm">{{
+                        stat
+                      }}</span>
+                      <span class="text-cyan-400 font-bold text-sm">{{
                         value
                       }}</span>
-                      <div class="flex life-loadouts-stat-bar">
-                        <span
-                          v-for="i in 10"
-                          :key="i"
-                          :class="[
-                            'inline-block w-3 h-3 mr-1 rounded-sm',
-                            i <= value / 10 ? 'bg-cyan-400' : 'bg-gray-700',
-                          ]"
-                        >
-                          ▮
-                        </span>
-                      </div>
+                    </div>
+                    <div
+                      class="w-full h-2 bg-gray-700 rounded-full overflow-hidden"
+                    >
+                      <div
+                        :style="{ width: value + '%' }"
+                        class="h-2 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full"
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -252,7 +245,20 @@
                     @click.stop="toggleCharacterFlip"
                     class="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-xl text-white font-semibold hover:from-cyan-500 hover:to-emerald-500 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 life-loadouts-workexp-btn"
                   >
-                    <Icon name="lucide:briefcase" class="w-4 h-4" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19.428 15.341A8 8 0 116.343 2.257M22 12.08V12a10 10 0 10-9.05 9.95"
+                      />
+                    </svg>
                     <span>Work Experience</span>
                   </button>
                 </div>
@@ -510,22 +516,18 @@
               v-for="(loadout, index) in loadouts"
               :key="loadout.id"
               :class="[
-                'relative w-full h-96 cursor-pointer transition-all duration-700 preserve-3d life-loadouts-card',
+                'relative w-full h-96 cursor-pointer preserve-3d life-loadouts-card',
                 visibleCards.includes(index) ? 'opacity-100' : 'opacity-0',
-                index === activeLoadout ? 'scale-105 z-20' : 'scale-100 z-10',
-                flippedCards.includes(index) ? 'rotate-y-180' : '',
+                flippedCards.includes(index) ? 'rotate-y-180' : 'rotate-y-0',
               ]"
-              @mouseenter="handleMouseEnter(index)"
-              @mouseleave="hoveredLoadout = null"
               @click="toggleFlip(index)"
             >
               <!-- Front Side -->
               <div
                 :class="[
                   'absolute inset-0 w-full h-full rounded-2xl border-2 transition-all duration-300 backface-hidden bg-black/70 backdrop-blur-sm overflow-hidden life-loadouts-card-front',
-                  index === activeLoadout
-                    ? `border-${loadout.accentColor}-400 shadow-2xl shadow-${loadout.accentColor}-400/20`
-                    : 'border-gray-700',
+                  flippedCards.includes(index) ? 'rotate-y-180' : 'rotate-y-0',
+                  `border-${loadout.accentColor}-400 shadow-2xl shadow-${loadout.accentColor}-400/20`,
                 ]"
               >
                 <!-- Particle Effects -->
@@ -625,7 +627,9 @@
                           >{{ loadout.rank }}</span
                         ></span
                       >
-                      <span>Projects: {{ loadout.projectsUsed }}</span>
+                      <span class="Project-btm"
+                        >Projects: {{ loadout.projectsUsed }}</span
+                      >
                     </div>
                     <div
                       class="text-xs text-gray-500 life-loadouts-card-meta-active"
@@ -634,6 +638,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Card clickable hint (desktop) -->
                 <div
                   class="life-loadouts-card-click-hint hidden md:flex items-center gap-1 absolute bottom-3 right-3 text-xs text-cyan-300 bg-black/60 px-2 py-1 rounded-full border border-cyan-400/30 pointer-events-none select-none"
                 >
@@ -653,8 +658,9 @@
                   </svg>
                   Tap to flip
                 </div>
+                <!-- Card clickable hint (mobile, move to bottom-right) -->
                 <div
-                  class="life-loadouts-card-click-hint-mobile flex md:hidden items-center absolute bottom-3 right-3 text-cyan-300 bg-black/60 p-2 rounded-full border border-cyan-400/30 pointer-events-none select-none"
+                  class="life-loadouts-card-click-hint-mobile flex md:hidden items-center absolute bottom-3 right-3 text-cyan-300 bg-black/60 p-2 rounded-full border border-cyan-400/30 pointer-events-none select-none z-10"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -677,9 +683,8 @@
               <div
                 :class="[
                   'absolute inset-0 w-full h-full rounded-2xl border-2 transition-all duration-300 rotate-y-180 backface-hidden bg-black/90 backdrop-blur-sm overflow-hidden life-loadouts-card-back',
-                  index === activeLoadout
-                    ? `border-${loadout.accentColor}-400 shadow-2xl shadow-${loadout.accentColor}-400/20`
-                    : 'border-gray-700',
+                  flippedCards.includes(index) ? 'rotate-y-0' : 'rotate-y-180',
+                  `border-${loadout.accentColor}-400 shadow-2xl shadow-${loadout.accentColor}-400/20`,
                 ]"
               >
                 <div
@@ -800,7 +805,7 @@ const loadouts = [
     systemName: "STAMINA_SYS.CORE",
     systemType: "Active Components",
     rank: "Elite",
-    activeYears: "2020-Present",
+    activeYears: "2010-Present",
     projectsUsed: 6,
     masteryLevel: 86,
     achievements: ["Marathon Finisher", "Mental Fortitude", "Consistency King"],
@@ -821,7 +826,7 @@ const loadouts = [
     systemName: "STRATEGY_SYS.CORE",
     systemType: "Strategic Modules",
     rank: "Diamond",
-    activeYears: "2018-Present",
+    activeYears: "2003-Present",
     projectsUsed: 15,
     masteryLevel: 94,
     achievements: ["Diamond Rank", "Team Leader", "Pattern Master"],
@@ -838,7 +843,7 @@ const loadouts = [
     systemName: "PRECISION_SYS.CORE",
     systemType: "Engineering Protocols",
     rank: "Expert",
-    activeYears: "2019-Present",
+    activeYears: "2005-Present",
     projectsUsed: 8,
     masteryLevel: 92,
     achievements: ["5+ Years Experience", "Expert Calibration", "Zero Defects"],
@@ -859,7 +864,7 @@ const loadouts = [
     systemName: "EXPLORATION_SYS.CORE",
     systemType: "Navigation Systems",
     rank: "Ranger",
-    activeYears: "2015-Present",
+    activeYears: "2010-Present",
     projectsUsed: 12,
     masteryLevel: 88,
     achievements: ["Trail Guide", "Survival Skills", "Exploration Badge"],
@@ -975,11 +980,6 @@ const toggleFlip = (index) => {
   } else {
     flippedCards.value = [...flippedCards.value, index];
   }
-};
-
-const handleMouseEnter = (index) => {
-  activeLoadout.value = index;
-  hoveredLoadout.value = index;
 };
 
 const handleScroll = () => {
@@ -1110,12 +1110,39 @@ onMounted(() => {
   .life-loadouts-nav-hint {
     margin-top: 2rem;
   }
+  .life-loadouts-card,
+  .life-loadouts-card-front,
+  .life-loadouts-card-back {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+    z-index: 1 !important;
+  }
+  .life-loadouts-card.rotate-y-180,
+  .life-loadouts-profile-card.rotate-y-180 {
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform: rotateY(180deg) !important;
+  }
+  .life-loadouts-card.rotate-y-0,
+  .life-loadouts-profile-card.rotate-y-0 {
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform: rotateY(0deg) !important;
+  }
   .life-loadouts-card:hover,
   .life-loadouts-card-front:hover,
-  .life-loadouts-card-back:hover {
-    box-shadow: none !important;
+  .life-loadouts-card-back:hover,
+  .life-loadouts-card:focus,
+  .life-loadouts-card-front:focus,
+  .life-loadouts-card-back:focus,
+  .life-loadouts-card:active,
+  .life-loadouts-card-front:active,
+  .life-loadouts-card-back:active {
+    transition: none !important;
     transform: none !important;
-    scale: 1 !important;
+    animation: none !important;
+    box-shadow: none !important;
+    z-index: 1 !important;
   }
 }
 @media (max-width: 480px) {
@@ -1205,6 +1232,14 @@ onMounted(() => {
     font-size: 0.8rem;
     padding: 0.5rem;
   }
+  .life-loadouts-profile-maininfo {
+    margin-bottom: 0.5rem;
+  }
+  .life-loadouts-profile-exp,
+  .life-loadouts-role-btn {
+    display: none;
+  }
+
   .life-loadouts-achievements {
     display: none;
   }
@@ -1259,11 +1294,18 @@ onMounted(() => {
     display: none !important;
   }
   .life-loadouts-card-click-hint-mobile {
+    right: 1rem;
+    left: auto;
+    bottom: 1rem;
+    z-index: 10;
     display: flex !important;
   }
   .life-loadouts-card-meta-row {
     justify-content: space-between;
     gap: 0.5rem;
+  }
+  .Project-btm {
+    display: none;
   }
 }
 </style>
