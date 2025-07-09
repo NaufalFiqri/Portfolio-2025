@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         { rel: "apple-touch-icon", href: "/NFLogo.svg" },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap",
         },
       ],
     },
