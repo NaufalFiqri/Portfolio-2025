@@ -550,11 +550,9 @@
       class="absolute inset-0 z-50 flex items-center justify-center p-4"
       @click="closeModal"
     >
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" />
       <div
-        class="absolute inset-0 bg-black/80 backdrop-blur-sm modal-backdrop"
-      />
-      <div
-        class="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 border border-cyan-500/30 backdrop-blur-xl shadow-2xl rounded-2xl modal-content"
+        class="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 border border-cyan-500/30 backdrop-blur-xl shadow-2xl rounded-2xl"
         @click.stop
       >
         <div class="p-8">
@@ -836,58 +834,13 @@ const scrollRight = () => {
 const triggerVaultSequence = (project, event, index) => {
   if (typeof window === "undefined") return;
 
-  // STEP 1: IMMEDIATE VISUAL RESPONSE - Only glow effects
-  const vaultElement = vaultItems.value[index];
-  if (vaultElement) {
-    // Immediate glow effects only
-    const glowEdge = vaultElement.querySelector(".glow-edge");
-    const glowOuter = vaultElement.querySelector(".glow-outer");
-    const techPanel = vaultElement.querySelector(".tech-panel");
+  // Immediately show modal without animations
+  selectedProject.value = project;
+  document.body.style.overflow = "hidden";
 
-    if (glowEdge) glowEdge.style.opacity = "0.8";
-    if (glowOuter) glowOuter.style.opacity = "1";
-    if (techPanel) {
-      techPanel.style.boxShadow = "inset 0 0 20px rgba(34, 211, 238, 0.4)";
-      techPanel.style.borderColor = "rgba(34, 211, 238, 0.8)";
-    }
-  }
-
-  // STEP 2: Light beam effect
-  const rect = event.currentTarget.getBoundingClientRect();
-  const crystalX = rect.left + rect.width / 2;
-  const crystalY = rect.top + rect.height / 2;
-
-  beamOrigin.value = {
-    x: Math.max(0, Math.min(crystalX, window.innerWidth)),
-    y: Math.max(0, Math.min(crystalY, window.innerHeight)),
-  };
-  modalOrigin.value = { x: crystalX, y: crystalY };
-
-  isVaultOpening.value = true;
+  // Reset any previous effects
   clickedIndex.value = index;
-
-  // STEP 3: Modal after 1 second
-  setTimeout(() => {
-    selectedProject.value = project;
-    document.body.style.overflow = "hidden";
-  }, 1000);
-
-  // STEP 4: Reset effects
-  setTimeout(() => {
-    isVaultOpening.value = false;
-    if (vaultElement) {
-      const glowEdge = vaultElement.querySelector(".glow-edge");
-      const glowOuter = vaultElement.querySelector(".glow-outer");
-      const techPanel = vaultElement.querySelector(".tech-panel");
-
-      if (glowEdge) glowEdge.style.opacity = "";
-      if (glowOuter) glowOuter.style.opacity = "";
-      if (techPanel) {
-        techPanel.style.boxShadow = "";
-        techPanel.style.borderColor = "";
-      }
-    }
-  }, 1500);
+  isVaultOpening.value = false;
 };
 
 const closeModal = () => {
@@ -956,13 +909,7 @@ onMounted(() => {
 }
 
 /* Modal animations */
-.modal-backdrop {
-  animation: backdropFade 0.6s ease-out;
-}
-
-.modal-content {
-  animation: modalEmerge 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+/* Removed modal animations for instant loading */
 
 /* Vault opening animations */
 .vault-opening {
@@ -975,29 +922,6 @@ onMounted(() => {
 
 .vault-panel-opening {
   animation: panelGlow 0.8s ease-out;
-}
-
-/* Modal emergence animations */
-@keyframes backdropFade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes modalEmerge {
-  0% {
-    transform: scale(0.5);
-    opacity: 0;
-    filter: blur(10px);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-    filter: blur(0);
-  }
 }
 
 /* Vault opening keyframes */

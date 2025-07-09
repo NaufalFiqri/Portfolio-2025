@@ -1,20 +1,17 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import LoadingScreen from "~/components/LoadingScreen.vue";
 import FloatingSocialLinks from "~/components/FloatingSocialLinks.vue";
 
-const loading = ref(true);
+const loading = ref(false);
 
 onMounted(() => {
-  setTimeout(() => {
-    loading.value = false;
-  }, 1200);
+  // Loading screen removed
+  loading.value = false;
 });
 </script>
 
 <template>
   <div>
-    <LoadingScreen />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

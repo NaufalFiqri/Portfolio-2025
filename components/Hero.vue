@@ -68,38 +68,11 @@
         <div
           class="inline-flex items-center justify-center w-20 h-20 mb-8 rounded-full bg-gradient-to-r from-cyan-500/30 to-purple-500/30 border border-cyan-400/40 shadow-lg shadow-cyan-400/20 relative"
         >
-          <svg
-            width="48"
-            height="48"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="text-cyan-300 drop-shadow-glow animate-pulse"
-          >
-            <circle
-              cx="24"
-              cy="24"
-              r="20"
-              stroke="#00fff0"
-              stroke-width="2"
-              fill="none"
-              opacity="0.3"
-            />
-            <path
-              d="M16 24L24 16L32 24"
-              stroke="#00fff0"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M16 32L24 24L32 32"
-              stroke="#7f5cff"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <img
+            src="@/assets/NFGif.gif"
+            alt="Naufal Fiqri Logo"
+            class="w-12 h-12 text-cyan-300 drop-shadow-glow animate-pulse filter-white-logo"
+          />
         </div>
         <h1
           class="glitch-text text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-xl"
@@ -479,5 +452,9 @@ function scrollToSkills() {
 .scroll-snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.filter-white-logo {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 }
 </style>

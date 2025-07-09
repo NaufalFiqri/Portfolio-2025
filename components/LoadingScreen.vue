@@ -30,13 +30,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-const show = ref(true);
+const show = ref(false);
 
 onMounted(() => {
-  // Simulate loading, or replace with Nuxt's ready event
-  setTimeout(() => {
-    show.value = false;
-  }, 5000);
+  // Loading screen is hidden
+  show.value = false;
 });
 </script>
 
