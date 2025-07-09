@@ -75,7 +75,7 @@
           />
         </div>
         <h1
-          class="glitch-text text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-xl"
+          class="glitch-text text-4xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-xl"
         >
           {{ glitchText }}
         </h1>
