@@ -256,7 +256,7 @@
                 <div class="flex space-x-4 mt-6 life-loadouts-action-btns">
                   <button
                     @click.stop="toggleCharacterFlip"
-                    class="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-xl text-white font-semibold hover:from-cyan-500 hover:to-emerald-500 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 hover:scale-105 life-loadouts-workexp-btn"
+                    class="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-cyan-600 to-emerald-600 rounded-xl text-white font-semibold hover:from-cyan-500 hover:to-emerald-500 transition-all duration-300 shadow-lg hover:shadow-cyan-400/25 life-loadouts-workexp-btn"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -473,7 +473,9 @@
                 </div>
 
                 <!-- Progress Stats -->
-                <div class="mt-6 pt-4 border-t border-gray-700/50">
+                <div
+                  class="progress-stats mt-6 pt-4 border-t border-gray-700/50"
+                >
                   <div class="space-y-3">
                     <div
                       class="flex items-center justify-between p-3 bg-cyan-400/10 rounded-lg border border-cyan-400/20"
@@ -538,7 +540,6 @@
               :class="[
                 'relative w-full h-96 cursor-pointer transition-all duration-700 preserve-3d life-loadouts-card',
                 visibleCards.includes(index) ? 'opacity-100' : 'opacity-0',
-                index === activeLoadout ? 'scale-105 z-20' : 'scale-100 z-10',
                 flippedCards.includes(index) ? 'rotate-y-180' : '',
               ]"
               @mouseenter="handleMouseEnter(index)"
@@ -592,7 +593,6 @@
                     <div
                       :class="[
                         'text-4xl mb-3 transform transition-transform duration-300 life-loadouts-card-icon',
-                        index === activeLoadout ? 'scale-110' : 'scale-100',
                       ]"
                     >
                       {{ loadout.icon }}
@@ -668,9 +668,9 @@
                   title="Card is flipped"
                 ></div>
 
-                <!-- Card clickable hint (desktop) -->
+                <!-- Card clickable hint -->
                 <div
-                  class="life-loadouts-card-click-hint hidden md:flex items-center gap-1 absolute bottom-3 right-3 text-xs text-cyan-300 bg-black/60 px-2 py-1 rounded-full border border-cyan-400/30 pointer-events-none select-none"
+                  class="life-loadouts-card-click-hint flex items-center gap-1 absolute bottom-3 right-3 text-xs text-cyan-300 bg-black/60 px-2 py-1 rounded-full border border-cyan-400/30 pointer-events-none select-none"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -687,26 +687,6 @@
                     />
                   </svg>
                   Tap to flip
-                </div>
-
-                <!-- Card clickable hint (mobile) -->
-                <div
-                  class="life-loadouts-card-click-hint-mobile flex md:hidden items-center absolute bottom-3 right-3 text-cyan-300 bg-black/60 p-2 rounded-full border border-cyan-400/30 pointer-events-none select-none z-10"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19.428 15.341A8 8 0 116.343 2.257M22 12.08V12a10 10 0 10-9.05 9.95"
-                    />
-                  </svg>
                 </div>
               </div>
 
@@ -1169,6 +1149,9 @@ onMounted(() => {
   .life-loadouts-nav-hint {
     margin-top: 2rem;
   }
+  .progress-stats {
+    display: none;
+  }
 }
 @media (max-width: 480px) {
   .life-loadouts-section {
@@ -1283,14 +1266,14 @@ onMounted(() => {
     font-size: 0.8rem !important;
   }
   .life-loadouts-card-click-hint {
-    display: none !important;
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.5rem !important;
+    bottom: 0.5rem !important;
+    right: 0.5rem !important;
   }
-  .life-loadouts-card-click-hint-mobile {
-    right: 1rem;
-    left: auto;
-    bottom: 1rem;
-    z-index: 10;
-    display: flex !important;
+  .life-loadouts-card-click-hint svg {
+    width: 1rem !important;
+    height: 1rem !important;
   }
   .life-loadouts-card-meta-row {
     justify-content: space-between;
