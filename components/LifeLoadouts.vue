@@ -520,13 +520,6 @@
               </div>
             </div>
           </div>
-
-          <!-- Character flip state indicator -->
-          <div
-            v-if="flippedCharacter"
-            class="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full animate-pulse pointer-events-none z-20"
-            title="Character card is flipped"
-          ></div>
         </div>
 
         <!-- Enhanced Loadout Cards - Right Side (2x2 Grid) -->
@@ -660,13 +653,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Flip state indicator -->
-                <div
-                  v-if="flippedCards.includes(index)"
-                  class="absolute top-3 left-3 w-3 h-3 bg-green-400 rounded-full animate-pulse pointer-events-none z-20"
-                  title="Card is flipped"
-                ></div>
 
                 <!-- Card clickable hint -->
                 <div
@@ -1213,21 +1199,34 @@ onMounted(() => {
     font-size: 0.7rem;
   }
   .life-loadouts-card-back-content {
-    padding: 0.75rem;
+    padding: 0.3rem !important;
   }
   .life-loadouts-card-back-title {
-    font-size: 1rem;
+    font-size: 0.7rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .life-loadouts-card-back-header {
+    margin-bottom: 0.1rem !important;
+  }
+  .life-loadouts-card-back-stats {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .life-loadouts-card-back-rank,
+  .life-loadouts-card-back-projects {
+    padding: 0.2rem !important;
   }
   .life-loadouts-card-back-achievements-title {
-    font-size: 0.8rem;
+    font-size: 0.6rem !important;
+    margin-bottom: 0.1rem !important;
   }
   .life-loadouts-card-back-achievement {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
   }
   .life-loadouts-card-back-philosophy {
-    font-size: 0.8rem;
-    padding: 0.5rem;
+    font-size: 0.6rem !important;
+    padding: 0.2rem !important;
   }
   .life-loadouts-profile-maininfo {
     margin-bottom: 0.5rem;
@@ -1280,6 +1279,81 @@ onMounted(() => {
     gap: 0.5rem;
   }
   .Project-btm {
+    display: none;
+  }
+  .life-loadouts-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+  .life-loadouts-card {
+    height: 220px !important;
+    min-height: 0 !important;
+    padding: 0.25rem !important;
+  }
+  .life-loadouts-card-content {
+    padding: 0.4rem !important;
+  }
+  .life-loadouts-card-icon {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .life-loadouts-card-title {
+    font-size: 0.85rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .life-loadouts-card-desc {
+    font-size: 0.7rem !important;
+    margin-bottom: 0.2rem !important;
+    display: none !important;
+  }
+  .life-loadouts-card-trait {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.4rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  .life-loadouts-card-skills-label {
+    font-size: 0.6rem !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .life-loadouts-card-skills-list {
+    gap: 0.1rem !important;
+  }
+  .life-loadouts-card-skill {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+  .life-loadouts-card-meta-row {
+    font-size: 0.7rem !important;
+  }
+  .life-loadouts-card-meta-active {
+    font-size: 0.6rem !important;
+  }
+  .life-loadouts-card-click-hint {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+    bottom: 0.2rem !important;
+    right: 0.2rem !important;
+  }
+  .life-loadouts-card-click-hint svg {
+    width: 0.8rem !important;
+    height: 0.8rem !important;
+  }
+  .life-loadouts-card-front .absolute.top-4.right-4.w-14.h-14 {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    top: 0.2rem !important;
+    right: 0.2rem !important;
+  }
+  .life-loadouts-card-front .absolute.top-4.right-4.w-14.h-14 svg {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+  }
+  .life-loadouts-card-front
+    .absolute.top-4.right-4.w-14.h-14
+    .absolute.inset-0 {
+    font-size: 0.85rem !important;
+  }
+  .life-loadouts-card-back-philosophy {
     display: none;
   }
 }
