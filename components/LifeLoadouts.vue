@@ -1356,5 +1356,8 @@ onMounted(() => {
   .life-loadouts-card-back-philosophy {
     display: none;
   }
+  .life-loadouts-workexp-item {
+    margin-top: 0.75rem !important;
+  }
 }
 </style>

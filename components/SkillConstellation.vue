@@ -326,13 +326,14 @@
                   class="text-center p-4 bg-gradient-to-br from-slate-800/50 to-slate-700/50 rounded-xl border border-slate-600/30"
                 >
                   <div
-                    :class="
+                    :class="[
+                      'tier-label',
                       activeSkill.tier === 'Legendary'
                         ? 'text-yellow-400'
                         : activeSkill.tier === 'Epic'
                         ? 'text-purple-400'
-                        : 'text-cyan-400'
-                    "
+                        : 'text-cyan-400',
+                    ]"
                     class="font-bold text-xl"
                   >
                     {{ activeSkill.tier }}
@@ -420,9 +421,11 @@
         <div class="flex items-center gap-2 text-sm mb-2">
           <span class="text-cyan-400">Level {{ hoveredSkillObj?.level }}%</span>
           <span class="text-gray-400">•</span>
-          <span :class="getTierColorClass(hoveredSkillObj?.tier)">{{
-            hoveredSkillObj?.tier
-          }}</span>
+          <span
+            :class="['tier-label', getTierColorClass(hoveredSkillObj?.tier)]"
+          >
+            {{ hoveredSkillObj?.tier }}
+          </span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2">
           <div
@@ -1340,6 +1343,23 @@ function getTierColorClass(tier) {
 
   .hover-tooltip {
     display: none !important;
+  }
+}
+
+.tier-label {
+  font-size: 1rem;
+  font-weight: 700;
+  max-width: 90px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .tier-label {
+    font-size: 0.85rem;
+    max-width: 60px;
   }
 }
 </style>
