@@ -16,12 +16,10 @@ It is **fully responsive** and optimized for desktop and mobile browsing.
 
 ## Features
 
-- **Homepage & Introduction:** A personal introduction with an overview of who I am.  
-- **Skills Showcase:** Highlights the technologies and tools I’ve mastered up to 2025.  
-- **Project Portfolio:** Displays selected projects with screenshots, live demos, and GitHub links.  
-- **Interactive Elements:** Smooth animations, responsive design, and interactive UI elements.  
-- **Contact Section:** Easy way for visitors to get in touch for collaborations or opportunities.  
-- **Personal Storytelling:** The portfolio reflects not only technical skills but also my personal journey and growth.  
+- **Homepage:** A personal homepage for the website.  
+- **Skills Constellation:** Highlights the technologies and tools I’ve mastered up to 2025.  
+- **Crystal Vault:** Displays selected projects with screenshots, live demos, and GitHub links.  
+- **Life Loadout:** Showcases who I am, the experiences I’ve gained, and the skills I’ve built so far.  
 
 ---
 
@@ -30,12 +28,11 @@ It is **fully responsive** and optimized for desktop and mobile browsing.
 This project demonstrates proficiency in modern frontend technologies:
 
 - **HTML5 & CSS3**  
-- **Tailwind CSS** for utility-first styling  
+- **Tailwind CSS**
 - **JavaScript (ES6+)**  
-- **Vue.js / React** (depending on your actual setup)  
-- **Responsive design & animations**  
-- **Netlify** for hosting  
-- **Git & GitHub** for version control  
+- **Vue.js **
+- **Netlify**
+- **Git & GitHub**
 
 ---
 
@@ -49,7 +46,7 @@ It’s meant to be **both a professional and personal statement**, showing who I
 
 ## Installation & Setup (Optional for Developers)
 
-If you want to explore or contribute to this project locally:
+If you want to explore this project locally:
 
 ```bash
 git clone https://github.com/yourusername/portfolio.git
