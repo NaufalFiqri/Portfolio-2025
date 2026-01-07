@@ -38,7 +38,9 @@ This project demonstrates proficiency in modern frontend technologies:
 
 ## Motivation
 
-This portfolio is more than just a technical showcase — it’s a **personal narrative**. I wanted a platform to reflect my **growth, experiences, and life so far**, combining what I’ve learned technically with how I want to present myself to the world.  
+This portfolio is more than just a technical showcase
+
+It’s a **personal narrative**. I wanted a platform to reflect my **growth, experiences, and life so far**, combining what I’ve learned technically with how I want to present myself to the world.  
 
 It’s meant to be **both a professional and personal statement**, showing who I am beyond just code.
 
