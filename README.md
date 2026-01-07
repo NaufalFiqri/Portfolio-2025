@@ -44,6 +44,18 @@ It’s meant to be **both a professional and personal statement**, showing who I
 
 ---
 
+## Screenshots
+
+<img width="1916" height="908" alt="image" src="https://github.com/user-attachments/assets/393cebf5-3aee-41cf-9a04-fedd7b3ff389" />
+
+<img width="1917" height="906" alt="image" src="https://github.com/user-attachments/assets/28b74a06-740b-4e51-9593-1e20dd4f3df2" />
+
+<img width="1918" height="904" alt="image" src="https://github.com/user-attachments/assets/b869a266-7d5f-4cd8-a9ea-9b0e99ca5ad1" />
+
+<img width="1916" height="906" alt="image" src="https://github.com/user-attachments/assets/d547ddb6-a0c2-42de-9af7-b0ae5851d29d" />
+
+---
+
 ## Installation & Setup (Optional for Developers)
 
 If you want to explore this project locally:
