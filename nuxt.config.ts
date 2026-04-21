@@ -6,7 +6,10 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
   nitro: {
     output: {
+      // Ensure static output is written directly to `dist/`
+      // so Netlify can publish a single folder reliably.
       dir: "dist",
+      publicDir: "dist",
     },
   },
   app: {
