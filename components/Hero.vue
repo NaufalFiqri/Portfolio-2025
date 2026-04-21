@@ -102,7 +102,7 @@
         >
           <!-- Resume/CV Link -->
           <a
-            href="/Naufal_Fiqri_Fauzi_Resume.pdf"
+            href="/assets/files/Naufal Fiqri Fauzi Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             class="group flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20"
@@ -283,7 +283,7 @@ onMounted(() => {
       .map((char) =>
         Math.random() > 0.8
           ? String.fromCharCode(33 + Math.floor(Math.random() * 94))
-          : char
+          : char,
       )
       .join("");
     glitchText.value = glitched;
@@ -340,7 +340,8 @@ function scrollToSkills() {
 }
 
 .aurora-bg {
-  background: radial-gradient(ellipse at 60% 20%, #00ffd0 0%, transparent 70%),
+  background:
+    radial-gradient(ellipse at 60% 20%, #00ffd0 0%, transparent 70%),
     radial-gradient(ellipse at 30% 80%, #7f5cff 0%, transparent 80%),
     radial-gradient(ellipse at 80% 60%, #0d9488 0%, transparent 50%),
     linear-gradient(120deg, #0a0f1c 0%, #0e2f3a 50%, #1e293b 100%);
@@ -349,23 +350,43 @@ function scrollToSkills() {
 }
 @keyframes auroraMove2 {
   0% {
-    background-position: 60% 20%, 30% 80%, 80% 60%, 0% 0%;
+    background-position:
+      60% 20%,
+      30% 80%,
+      80% 60%,
+      0% 0%;
     filter: hue-rotate(0deg);
   }
   25% {
-    background-position: 65% 25%, 35% 85%, 75% 55%, 25% 25%;
+    background-position:
+      65% 25%,
+      35% 85%,
+      75% 55%,
+      25% 25%;
     filter: hue-rotate(5deg);
   }
   50% {
-    background-position: 70% 30%, 40% 90%, 85% 65%, 50% 50%;
+    background-position:
+      70% 30%,
+      40% 90%,
+      85% 65%,
+      50% 50%;
     filter: hue-rotate(10deg);
   }
   75% {
-    background-position: 75% 35%, 25% 75%, 90% 70%, 75% 75%;
+    background-position:
+      75% 35%,
+      25% 75%,
+      90% 70%,
+      75% 75%;
     filter: hue-rotate(5deg);
   }
   100% {
-    background-position: 70% 30%, 40% 90%, 85% 65%, 100% 100%;
+    background-position:
+      70% 30%,
+      40% 90%,
+      85% 65%,
+      100% 100%;
     filter: hue-rotate(0deg);
   }
 }
@@ -387,7 +408,9 @@ function scrollToSkills() {
 .animate-circuit {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
-  animation: circuitDraw 3s linear forwards, circuitPulse 2s infinite alternate;
+  animation:
+    circuitDraw 3s linear forwards,
+    circuitPulse 2s infinite alternate;
 }
 .animate-circuit.delay-1s {
   animation-delay: 1s, 1s;
@@ -412,28 +435,49 @@ function scrollToSkills() {
 .glitch-text {
   color: #fff;
   position: relative;
-  text-shadow: 2px 0 #00ffd0, -2px 0 #7f5cff, 0 4px 24px #00fff0;
+  text-shadow:
+    2px 0 #00ffd0,
+    -2px 0 #7f5cff,
+    0 4px 24px #00fff0;
   animation: glitch 2s infinite linear alternate-reverse;
   font-family: "Orbitron", "Share Tech Mono", "serif";
 }
 @keyframes glitch {
   0% {
-    text-shadow: 2px 0 #00ffd0, -2px 0 #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      2px 0 #00ffd0,
+      -2px 0 #7f5cff,
+      0 4px 24px #00fff0;
   }
   20% {
-    text-shadow: 2px 2px #00ffd0, -2px -2px #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      2px 2px #00ffd0,
+      -2px -2px #7f5cff,
+      0 4px 24px #00fff0;
   }
   40% {
-    text-shadow: -2px 2px #00ffd0, 2px -2px #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      -2px 2px #00ffd0,
+      2px -2px #7f5cff,
+      0 4px 24px #00fff0;
   }
   60% {
-    text-shadow: 2px -2px #00ffd0, -2px 2px #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      2px -2px #00ffd0,
+      -2px 2px #7f5cff,
+      0 4px 24px #00fff0;
   }
   80% {
-    text-shadow: -2px 0 #00ffd0, 2px 0 #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      -2px 0 #00ffd0,
+      2px 0 #7f5cff,
+      0 4px 24px #00fff0;
   }
   100% {
-    text-shadow: 2px 0 #00ffd0, -2px 0 #7f5cff, 0 4px 24px #00fff0;
+    text-shadow:
+      2px 0 #00ffd0,
+      -2px 0 #7f5cff,
+      0 4px 24px #00fff0;
   }
 }
 

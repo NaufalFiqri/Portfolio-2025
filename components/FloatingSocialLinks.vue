@@ -14,7 +14,7 @@
       >
         <!-- Resume Link -->
         <a
-          href="/Naufal_Fiqri_Fauzi_Resume.pdf"
+          href="/assets/files/Naufal Fiqri Fauzi Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           class="group flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/40 hover:border-cyan-400/80 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20 backdrop-blur-sm fade-in-4"
