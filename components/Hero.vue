@@ -102,7 +102,7 @@
         >
           <!-- Resume/CV Link -->
           <a
-            href="/NaufalFiqriFauziResume.pdf"
+            href="/Naufal_Fiqri_Fauzi_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             download
