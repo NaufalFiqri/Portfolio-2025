@@ -51,26 +51,6 @@
           mastery...
         </p>
 
-        <!-- Mode Selector -->
-        <!-- <div class="mt-8 flex justify-center">
-          <div
-            class="flex space-x-2 p-2 bg-black/60 border border-cyan-400/30 rounded-full backdrop-blur-sm"
-          >
-            <button
-              v-for="(mode, key) in modes"
-              :key="key"
-              @click="selectedMode = key"
-              :class="[
-                'px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300',
-                selectedMode === key
-                  ? `bg-${mode.color}-500/20 text-${mode.color}-300 border border-${mode.color}-400/40`
-                  : 'text-gray-400 hover:text-white',
-              ]"
-            >
-              {{ mode.title }}
-            </button>
-          </div>
-        </div> -->
       </div>
 
       <!-- Main Content Layout: Character Profile Left, Loadout Cards Right -->
@@ -81,7 +61,12 @@
         <div class="lg:w-1/2 life-loadouts-profile-col">
           <div
             class="relative w-full h-[800px] cursor-pointer transition-all duration-700 preserve-3d life-loadouts-profile-card"
+            role="button"
+            tabindex="0"
+            :aria-label="flippedCharacter ? 'Show character profile' : 'Show work experience'"
             @click="toggleCharacterFlip"
+            @keydown.enter="toggleCharacterFlip"
+            @keydown.space.prevent="toggleCharacterFlip"
           >
             <!-- Front Side - Character Profile -->
             <div
@@ -145,6 +130,8 @@
                     <button
                       @click.stop="showRoleDropdown = !showRoleDropdown"
                       class="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 border border-emerald-400/30 rounded-full text-sm text-emerald-300 hover:bg-emerald-400/30 transition-all life-loadouts-role-btn"
+                      aria-haspopup="true"
+                      :aria-expanded="showRoleDropdown"
                     >
                       <span>Central Processing Unit</span>
                       <svg
@@ -330,33 +317,33 @@
                           <h5
                             class="text-cyan-300 font-semibold text-sm life-loadouts-workexp-role"
                           >
-                            Full-Stack Developer
+                            Web Developer
                           </h5>
                           <span
                             class="text-xs text-emerald-400 font-mono life-loadouts-workexp-date"
                           >
-                            2022-Present</span
+                            Jan 2025-Present</span
                           >
                         </div>
                         <p
                           class="text-gray-400 text-xs mb-1 life-loadouts-workexp-desc"
                         >
-                          Freelance & Personal Projects
+                          MSD Digital Intelligence
                         </p>
                         <div
                           class="flex flex-wrap gap-1 mt-2 life-loadouts-workexp-skills"
                         >
                           <span
                             class="px-2 py-1 bg-cyan-400/20 text-cyan-300 rounded text-xs font-mono"
-                            >React</span
+                            >Vue 3</span
                           >
                           <span
                             class="px-2 py-1 bg-emerald-400/20 text-emerald-300 rounded text-xs font-mono"
-                            >Vue.js</span
+                            >Pinia</span
                           >
                           <span
                             class="px-2 py-1 bg-purple-400/20 text-purple-300 rounded text-xs font-mono"
-                            >Node.js</span
+                            >REST APIs</span
                           >
                         </div>
                       </div>
@@ -374,25 +361,25 @@
                       >
                         <div class="flex items-center justify-between mb-1">
                           <h5 class="text-emerald-300 font-semibold text-sm">
-                            Frontend Developer
+                            Executive Trainee
                           </h5>
                           <span class="text-xs text-blue-400 font-mono"
-                            >2021-2022</span
+                            >Jun 2024-Dec 2024</span
                           >
                         </div>
-                        <p class="text-gray-400 text-xs mb-1">Contract Work</p>
+                        <p class="text-gray-400 text-xs mb-1">UMW Corporation Sdn. Bhd.</p>
                         <div class="flex flex-wrap gap-1 mt-2">
                           <span
                             class="px-2 py-1 bg-emerald-400/20 text-emerald-300 rounded text-xs font-mono"
-                            >JavaScript</span
+                            >Articulate 360</span
                           >
                           <span
                             class="px-2 py-1 bg-blue-400/20 text-blue-300 rounded text-xs font-mono"
-                            >CSS</span
+                            >Project Coordination</span
                           >
                           <span
                             class="px-2 py-1 bg-purple-400/20 text-purple-300 rounded text-xs font-mono"
-                            >HTML</span
+                            >Stakeholder Reporting</span
                           >
                         </div>
                       </div>
@@ -410,61 +397,27 @@
                       >
                         <div class="flex items-center justify-between mb-1">
                           <h5 class="text-blue-300 font-semibold text-sm">
-                            Junior Developer
+                            Web Developer Intern
                           </h5>
                           <span class="text-xs text-purple-400 font-mono"
-                            >2020-2021</span
+                            >Oct 2023-Mar 2024</span
                           >
                         </div>
                         <p class="text-gray-400 text-xs mb-1">
-                          Learning & Building
+                          Bike Bear
                         </p>
                         <div class="flex flex-wrap gap-1 mt-2">
                           <span
                             class="px-2 py-1 bg-blue-400/20 text-blue-300 rounded text-xs font-mono"
-                            >Git</span
+                            >JavaScript</span
                           >
                           <span
                             class="px-2 py-1 bg-purple-400/20 text-purple-300 rounded text-xs font-mono"
-                            >SQL</span
+                            >PHP</span
                           >
                           <span
                             class="px-2 py-1 bg-orange-400/20 text-orange-300 rounded text-xs font-mono"
-                            >Python</span
-                          >
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Skills Evolution -->
-                    <div
-                      class="relative flex items-start life-loadouts-workexp-item"
-                    >
-                      <div
-                        class="absolute left-4 w-4 h-4 bg-gradient-to-r from-purple-400 to-orange-400 rounded-full border-2 border-gray-800"
-                      ></div>
-                      <div
-                        class="ml-12 p-3 bg-gradient-to-r from-purple-400/10 to-orange-400/10 border border-purple-400/30 rounded-lg backdrop-blur-sm"
-                      >
-                        <div class="flex items-center justify-between mb-1">
-                          <h5 class="text-purple-300 font-semibold text-sm">
-                            Skill Development
-                          </h5>
-                          <span class="text-xs text-orange-400 font-mono"
-                            >2019-2020</span
-                          >
-                        </div>
-                        <p class="text-gray-400 text-xs mb-1">
-                          Self-Taught Learning
-                        </p>
-                        <div class="flex flex-wrap gap-1 mt-2">
-                          <span
-                            class="px-2 py-1 bg-purple-400/20 text-purple-300 rounded text-xs font-mono"
-                            >Algorithms</span
-                          >
-                          <span
-                            class="px-2 py-1 bg-orange-400/20 text-orange-300 rounded text-xs font-mono"
-                            >Data Structures</span
+                            >WordPress</span
                           >
                         </div>
                       </div>
@@ -489,7 +442,7 @@
                           Years Experience
                         </div>
                       </div>
-                      <div class="text-cyan-400 font-bold text-xl">4+</div>
+                      <div class="text-cyan-400 font-bold text-xl">3+</div>
                     </div>
                     <div
                       class="flex items-center justify-between p-3 bg-emerald-400/10 rounded-lg border border-emerald-400/20"
@@ -535,9 +488,14 @@
                 visibleCards.includes(index) ? 'opacity-100' : 'opacity-0',
                 flippedCards.includes(index) ? 'rotate-y-180' : '',
               ]"
+              role="button"
+              tabindex="0"
+              :aria-label="`${loadout.title} loadout card, tap to flip for details`"
               @mouseenter="handleMouseEnter(index)"
               @mouseleave="hoveredLoadout = null"
               @click="toggleFlip(index)"
+              @keydown.enter="toggleFlip(index)"
+              @keydown.space.prevent="toggleFlip(index)"
             >
               <!-- Front Side -->
               <div
@@ -788,7 +746,6 @@ const visibleCards = ref([]);
 const flippedCards = ref([]);
 const hoveredLoadout = ref(null);
 const showRoleDropdown = ref(false);
-const selectedMode = ref("developer");
 const sectionRef = ref(null);
 const scrollProgress = ref(0);
 const flippedCharacter = ref(false);
@@ -876,7 +833,7 @@ const loadouts = [
 // Character biodata
 const biodata = reactive({
   name: "Naufal Fiqri",
-  class: "Full-Stack Developer",
+  class: "Front-End Developer",
   level: 24,
   experience: "Central Processing Unit",
   rank: "Elite",
@@ -884,7 +841,7 @@ const biodata = reactive({
   achievements: ["Marathon Finisher", "Mental Fortress", "Consistency King"],
   alternateRoles: [
     "Frontend Architect",
-    "Backend Systems",
+    "API Integration Specialist",
     "Creative Strategist",
     "System Designer",
   ],
@@ -896,32 +853,17 @@ const biodata = reactive({
   },
 });
 
-// Mode configurations
-const modes = {
-  developer: {
-    title: "Developer Mode",
-    description: "Technical focus on coding and architecture",
-    color: "cyan",
-  },
-  strategist: {
-    title: "Strategist Mode",
-    description: "Leadership and project management focus",
-    color: "purple",
-  },
-  explorer: {
-    title: "Explorer Mode",
-    description: "Creative and experimental approach",
-    color: "emerald",
-  },
-};
-
-// Particle effect components
+// Particle effect components (cached per type so Vue doesn't remount/re-randomize on every re-render)
+const particleComponentCache = {};
 const getParticleComponent = (type) => {
-  return {
-    name: "ParticleEffect",
-    props: ["accentColor"],
-    template: `<div>${getParticleTemplate(type)}</div>`,
-  };
+  if (!particleComponentCache[type]) {
+    particleComponentCache[type] = {
+      name: "ParticleEffect",
+      props: ["accentColor"],
+      template: `<div>${getParticleTemplate(type)}</div>`,
+    };
+  }
+  return particleComponentCache[type];
 };
 
 const getParticleTemplate = (type) => {

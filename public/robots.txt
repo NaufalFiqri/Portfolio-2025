@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://naufalfiqri.netlify.app/sitemap.xml

@@ -381,7 +381,17 @@
                   isMobile ? currentVaultIndex : index
                 )
               "
+              @keydown.enter="
+                triggerVaultSequence(
+                  project,
+                  $event,
+                  isMobile ? currentVaultIndex : index
+                )
+              "
               class="group relative cursor-pointer vault-item"
+              role="button"
+              tabindex="0"
+              :aria-label="`View project details for ${project.title}`"
               :ref="
                 (el) => {
                   if (el) vaultItems[isMobile ? currentVaultIndex : index] = el;

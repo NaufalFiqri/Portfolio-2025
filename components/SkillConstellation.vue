@@ -276,6 +276,7 @@
             <!-- Modal content  -->
             <button
               @click="activeSkill = null"
+              aria-label="Close"
               class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 text-2xl transition-colors hover:scale-110 transform"
             >
               &times;
@@ -288,7 +289,7 @@
                 >
                   <img
                     :src="skillIcons[activeSkill.name]"
-                    alt="icon"
+                    :alt="`${activeSkill.name} icon`"
                     style="
                       width: 56px;
                       height: 56px;
@@ -394,49 +395,55 @@
       </Dialog>
     </Teleport>
 
-    <!-- Hover Tooltip Modal with smart positioning -->
+    <!-- Hover Tooltip: the star itself shifts and enlarges into this box -->
     <div
       v-if="hoveredSkill && !activeSkill"
       class="hover-tooltip absolute pointer-events-none z-30"
-      :class="`tooltip-emerge tooltip-${getTooltipPosition()}`"
+      :class="`star-pop-emerge star-pop-${getTooltipPosition()}`"
       :style="getTooltipStyle()"
     >
       <div
-        class="bg-black/90 border border-cyan-400/50 rounded-xl p-4 backdrop-blur-md shadow-2xl min-w-[200px] tooltip-content"
+        class="star-pop-shape p-4 min-w-[200px] backdrop-blur-md"
+        :style="{ '--tier-glow': getTierColor(hoveredSkillObj?.tier) }"
       >
-        <div class="flex items-center gap-3 mb-2">
-          <span class="text-2xl">{{ hoveredSkillObj?.icon }}</span>
-          <div>
-            <div class="text-cyan-300 font-bold text-lg">
-              {{ hoveredSkillObj?.name }}
-            </div>
-            <div class="text-yellow-400 font-semibold">
-              {{ hoveredSkillObj?.mastery }}
+        <div class="star-pop-text">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-2xl">{{ hoveredSkillObj?.icon }}</span>
+            <div>
+              <div class="text-cyan-300 font-bold text-lg">
+                {{ hoveredSkillObj?.name }}
+              </div>
+              <div class="text-yellow-400 font-semibold">
+                {{ hoveredSkillObj?.mastery }}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="text-purple-300 text-sm mb-2">
-          {{ hoveredSkillObj?.category }}
-        </div>
-        <div class="flex items-center gap-2 text-sm mb-2">
-          <span class="text-cyan-400">Level {{ hoveredSkillObj?.level }}%</span>
-          <span class="text-gray-400">•</span>
-          <span
-            :class="['tier-label', getTierColorClass(hoveredSkillObj?.tier)]"
-          >
-            {{ hoveredSkillObj?.tier }}
-          </span>
-        </div>
-        <div class="w-full bg-gray-700 rounded-full h-2">
-          <div
-            class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
-            :style="{
-              width: (hoveredSkillObj?.xp / hoveredSkillObj?.maxXp) * 100 + '%',
-            }"
-          ></div>
-        </div>
-        <div class="text-xs text-gray-400 mt-1 text-center">
-          {{ hoveredSkillObj?.xp }}/{{ hoveredSkillObj?.maxXp }} XP
+          <div class="text-purple-300 text-sm mb-2">
+            {{ hoveredSkillObj?.category }}
+          </div>
+          <div class="flex items-center gap-2 text-sm mb-2">
+            <span class="text-cyan-400"
+              >Level {{ hoveredSkillObj?.level }}%</span
+            >
+            <span class="text-gray-400">•</span>
+            <span
+              :class="['tier-label', getTierColorClass(hoveredSkillObj?.tier)]"
+            >
+              {{ hoveredSkillObj?.tier }}
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2">
+            <div
+              class="h-2 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400"
+              :style="{
+                width:
+                  (hoveredSkillObj?.xp / hoveredSkillObj?.maxXp) * 100 + '%',
+              }"
+            ></div>
+          </div>
+          <div class="text-xs text-gray-400 mt-1 text-center">
+            {{ hoveredSkillObj?.xp }}/{{ hoveredSkillObj?.maxXp }} XP
+          </div>
         </div>
       </div>
     </div>
@@ -452,7 +459,7 @@ import vueIcon from "~/assets/vue-svgrepo-com.svg";
 import tailwindIcon from "~/assets/tailwind-svgrepo-com.svg";
 import reactIcon from "~/assets/react-svgrepo-com.svg";
 import typescriptIcon from "~/assets/typescript-svgrepo-com.svg";
-import figmaIcon from "~/assets/figma-svgrepo-com.svg";
+import restApiIcon from "~/assets/rest-api-svgrepo-com.svg";
 import gitIcon from "~/assets/git-svgrepo-com.svg";
 
 const visible = ref(false);
@@ -472,7 +479,7 @@ const skillIcons = {
   "Tailwind CSS": tailwindIcon,
   React: reactIcon,
   TypeScript: typescriptIcon,
-  Figma: figmaIcon,
+  "REST APIs": restApiIcon,
   Git: gitIcon,
 };
 
@@ -481,12 +488,13 @@ const skillConstellation = [
   {
     name: "HTML",
     tier: "Rare",
-    connections: ["CSS", "JavaScript", "Figma"],
-    level: 95,
+    icon: "🌐",
+    connections: ["CSS", "JavaScript"],
+    level: 92,
     category: "Core Foundation",
     mastery: "Markup Master",
     unlocked: "2021",
-    xp: 9500,
+    xp: 9200,
     maxXp: 10000,
     description:
       "Semantic structure architect. Foundation of web development mastered.",
@@ -494,12 +502,13 @@ const skillConstellation = [
   {
     name: "CSS",
     tier: "Epic",
-    connections: ["HTML", "JavaScript", "Figma"],
-    level: 92,
+    icon: "🎨",
+    connections: ["HTML", "JavaScript", "Tailwind CSS"],
+    level: 90,
     category: "Design System",
     mastery: "Style Sovereign",
     unlocked: "2021",
-    xp: 9200,
+    xp: 9000,
     maxXp: 10000,
     description:
       "Visual design mastery. Responsive layouts and modern styling perfected.",
@@ -507,32 +516,49 @@ const skillConstellation = [
   {
     name: "JavaScript",
     tier: "Legendary",
-    connections: ["HTML", "CSS", "Vue 3", "React"],
-    level: 85,
+    icon: "⚡",
+    connections: ["HTML", "CSS", "Vue 3", "React", "TypeScript", "REST APIs"],
+    level: 90,
     category: "Core Programming",
     mastery: "Script Wielder",
     unlocked: "2022",
-    xp: 8500,
+    xp: 9000,
     maxXp: 10000,
     description:
-      "Dynamic interactions. DOM manipulation. Modern ES6+ features mastered.",
+      "ES6+ mastery forged over 1.5+ years shipping production features for a 665+ view enterprise SPA.",
   },
   {
     name: "Vue 3",
     tier: "Legendary",
-    connections: ["JavaScript", "Tailwind CSS"],
-    level: 78,
+    icon: "💚",
+    connections: ["JavaScript", "Pinia", "Tailwind CSS", "REST APIs"],
+    level: 93,
     category: "Frontend Framework",
-    mastery: "Reactive Developer",
+    mastery: "SPA Architect",
     unlocked: "2023",
-    xp: 7800,
+    xp: 9300,
     maxXp: 10000,
     description:
-      "Currently learning. Composition API and reactive programming in progress.",
+      "Core specialty. Built and maintained a 665+ view Vue 3 SPA with ~259 lazy-loaded routes for a government livestock management system.",
+  },
+  {
+    name: "Pinia",
+    tier: "Legendary",
+    icon: "🍍",
+    connections: ["Vue 3", "JavaScript", "REST APIs"],
+    level: 88,
+    category: "State Management",
+    mastery: "State Commander",
+    unlocked: "2023",
+    xp: 8800,
+    maxXp: 10000,
+    description:
+      "Architected state across 29 Pinia stores with a custom router middleware/guard pipeline enforcing role-based access control.",
   },
   {
     name: "Tailwind CSS",
     tier: "Rare",
+    icon: "🌊",
     connections: ["CSS", "Vue 3", "React"],
     level: 82,
     category: "CSS Framework",
@@ -545,7 +571,8 @@ const skillConstellation = [
   },
   {
     name: "React",
-    tier: "Legendary",
+    tier: "Epic",
+    icon: "⚛️",
     connections: ["JavaScript", "TypeScript", "Tailwind CSS"],
     level: 65,
     category: "Frontend Framework",
@@ -554,37 +581,40 @@ const skillConstellation = [
     xp: 6500,
     maxXp: 10000,
     description:
-      "Adequate knowledge. Component architecture and hooks understanding.",
+      "Component architecture and hooks, applied across personal projects like Tvflix and this portfolio.",
   },
   {
     name: "TypeScript",
-    tier: "Legendary",
-    connections: ["JavaScript", "React"],
-    level: 60,
+    tier: "Epic",
+    icon: "🔷",
+    connections: ["JavaScript", "React", "Vue 3"],
+    level: 75,
     category: "Programming Language",
-    mastery: "Type Explorer",
+    mastery: "Type Guardian",
     unlocked: "2023",
-    xp: 6000,
+    xp: 7500,
     maxXp: 10000,
     description:
-      "Adequate proficiency. Type safety and modern development practices.",
+      "Type-safe development practices layered onto Vue and React projects for more maintainable code.",
   },
   {
-    name: "Figma",
+    name: "REST APIs",
     tier: "Epic",
-    connections: ["HTML", "CSS"],
-    level: 68,
-    category: "Design Tool",
-    mastery: "Design Apprentice",
-    unlocked: "2022",
-    xp: 6800,
+    icon: "🔌",
+    connections: ["JavaScript", "Vue 3", "Pinia"],
+    level: 85,
+    category: "Backend Integration",
+    mastery: "API Integrator",
+    unlocked: "2023",
+    xp: 8500,
     maxXp: 10000,
     description:
-      "Adequate design skills. UI/UX prototyping and design system creation.",
+      "Layered API architecture with Axios interceptors and a per-domain service layer, plus WebSocket integrations handling auth, validation, and session expiry.",
   },
   {
     name: "Git",
     tier: "Epic",
+    icon: "🌿",
     connections: ["JavaScript"],
     level: 88,
     category: "Version Control",
@@ -593,7 +623,7 @@ const skillConstellation = [
     xp: 8800,
     maxXp: 10000,
     description:
-      "Version control mastery. Collaboration and code management expert.",
+      "Version control and CI/CD pipelines with GitHub Actions. Collaboration and code management expert.",
   },
 ];
 
@@ -818,7 +848,6 @@ function getTierGlow(tier) {
 
 function animateStarsSequence() {
   // Enhanced star appearance animation
-  console.log("Starting enhanced skill constellation animation");
 }
 
 function getDataStreamStyle(i) {
@@ -1124,37 +1153,35 @@ function getTierColorClass(tier) {
   }
 }
 
-.tooltip-emerge {
-  animation-duration: 0.3s;
-  animation-timing-function: ease-out;
+/* Star -> info box morph: the star shrinks the hover box down to a point,
+   then the point shifts toward its final spot while enlarging and
+   reshaping from a round "star" blob into a rounded rectangle. */
+.star-pop-emerge {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.22, 1.14, 0.36, 1);
   animation-fill-mode: forwards;
-  transform-origin: center center;
 }
 
-.tooltip-top {
-  animation-name: tooltip-emerge-top;
+.star-pop-top {
+  animation-name: star-pop-move-top;
 }
 
-.tooltip-left {
-  animation-name: tooltip-emerge-left;
+.star-pop-left {
+  animation-name: star-pop-move-left;
 }
 
-.tooltip-right {
-  animation-name: tooltip-emerge-right;
+.star-pop-right {
+  animation-name: star-pop-move-right;
 }
 
-.tooltip-bottom {
-  animation-name: tooltip-emerge-bottom;
+.star-pop-bottom {
+  animation-name: star-pop-move-bottom;
 }
 
-.tooltip-content {
-  animation: tooltip-content-emerge 0.3s ease-out forwards;
-}
-
-@keyframes tooltip-emerge-top {
+@keyframes star-pop-move-top {
   0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.05);
   }
   100% {
     opacity: 1;
@@ -1162,10 +1189,10 @@ function getTierColorClass(tier) {
   }
 }
 
-@keyframes tooltip-emerge-left {
+@keyframes star-pop-move-left {
   0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.05);
   }
   100% {
     opacity: 1;
@@ -1173,10 +1200,10 @@ function getTierColorClass(tier) {
   }
 }
 
-@keyframes tooltip-emerge-right {
+@keyframes star-pop-move-right {
   0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.05);
   }
   100% {
     opacity: 1;
@@ -1184,10 +1211,10 @@ function getTierColorClass(tier) {
   }
 }
 
-@keyframes tooltip-emerge-bottom {
+@keyframes star-pop-move-bottom {
   0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.05);
   }
   100% {
     opacity: 1;
@@ -1195,21 +1222,46 @@ function getTierColorClass(tier) {
   }
 }
 
-@keyframes tooltip-content-emerge {
+/* Reshapes from a glowing star-colored blob into the dark rectangular card */
+.star-pop-shape {
+  border: 1px solid var(--tier-glow, #22d3ee);
+  overflow: hidden;
+  animation: star-pop-shape 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes star-pop-shape {
   0% {
-    opacity: 0;
-    transform: scale(0.8);
-    filter: blur(4px);
+    background-color: var(--tier-glow, #22d3ee);
+    border-color: var(--tier-glow, #22d3ee);
+    border-radius: 50%;
+    box-shadow: 0 0 35px var(--tier-glow, #22d3ee);
   }
-  60% {
-    opacity: 0.8;
-    transform: scale(1.05);
-    filter: blur(1px);
+  55% {
+    border-radius: 28%;
   }
   100% {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: rgba(34, 211, 238, 0.5);
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Text waits for the shape to settle before it appears */
+.star-pop-text {
+  opacity: 0;
+  animation: star-pop-text-fade 0.35s ease-out forwards;
+  animation-delay: 0.22s;
+}
+
+@keyframes star-pop-text-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
     opacity: 1;
-    transform: scale(1);
-    filter: blur(0px);
+    transform: translateY(0);
   }
 }
 

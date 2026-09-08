@@ -97,6 +97,8 @@
         @click="toggleExpanded"
         class="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-cyan-500/30 to-purple-500/30 border border-cyan-400/60 hover:border-cyan-400/90 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/30 backdrop-blur-md group"
         :class="{ 'rotate-45': isExpanded }"
+        :aria-label="isExpanded ? 'Close social links menu' : 'Open social links menu'"
+        :aria-expanded="isExpanded"
       >
         <div class="flex flex-col gap-1">
           <div
